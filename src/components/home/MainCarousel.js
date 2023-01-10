@@ -66,7 +66,7 @@ const MainCarousel = () => {
               //marginTop: "60px",
               marginLeft: "15%",
               width: "100%",
-              height: "100vh",
+              maxHeight: "100vh",
               padding: "80px 0px 0px 0px",
               backgroundAttachment: "fixed",
               //backgroundColor: "#1d1d1f",
