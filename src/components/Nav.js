@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Badge, Box, IconButton } from "@mui/material";
-import { setIsCartOpen } from "../state";
-import { setIsProfileOpen } from "../state/profileSlice";
+import { setIsCartOpen } from "../../state";
+import { setIsProfileOpen } from "../../state/profileSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   HomeOutlined,
@@ -10,7 +10,7 @@ import {
   MenuOutlined,
   SearchOutlined,
 } from "@mui/icons-material";
-import { shades } from "../lib/theme";
+import { shades } from "../../lib/theme";
 import { useRouter } from "next/router";
 
 const Nav = () => {
@@ -36,7 +36,6 @@ const Nav = () => {
           bg-white
         "
     >
-      
       <Box
         display="flex"
         alignItems="center"
@@ -81,14 +80,12 @@ const Nav = () => {
               <SearchOutlined />
             </IconButton>
 
-            
-              <IconButton
-                sx={{ color: "black" }}
-                onClick={() => dispatch(setIsProfileOpen({}))}
-              >
-                <PersonOutline />
-              </IconButton>
-           
+            <IconButton
+              sx={{ color: "black" }}
+              onClick={() => dispatch(setIsProfileOpen({}))}
+            >
+              <PersonOutline />
+            </IconButton>
 
             <Badge
               badgeContent={cart.length}

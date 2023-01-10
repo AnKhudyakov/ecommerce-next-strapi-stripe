@@ -1,9 +1,8 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Layout from "./Layout";
-import { fetcher } from "../lib/api";
-import { getIdFromLocalCookie, getTokenFromServerCookie } from "../lib/auth";
-import { useFetchUser } from "../lib/authContext";
+import { fetcher } from "../../lib/api";
+import { getIdFromLocalCookie, getTokenFromServerCookie } from "../../lib/auth";
+import { useFetchUser } from "../../lib/authContext";
 
 const Profile = ({ avatar }) => {
   const { user, loading } = useFetchUser();
@@ -34,37 +33,35 @@ const Profile = ({ avatar }) => {
     }
   };
   return (
-    
-      <>
-        <h1 className="text-5xl font-bold">
-          Welcome back{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-            {user}
-          </span>
-          <span>👋</span>
-        </h1>
-        {avatar === "default_avatar" && (
-          <div>
-            <h4>Select an image to upload</h4>
-            <input type="file" onChange={uploadToClient} />
-            <button
-              className="md:p-2 rounded py-2 text-black bg-purple-200 p-2"
-              type="submit"
-              onClick={uploadToServer}
-            >
-              Set Profile Image
-            </button>
-          </div>
-        )}
-        {/* eslint-disable @next/next/no-img-element */}
-        {avatar && (
-          <img
-            src={`https://res.cloudinary.com/tamas-demo/image/upload/f_auto,q_auto,w_150,h_150,g_face,c_thumb,r_max/${avatar}`}
-            alt="Profile"
-          />
-        )}
-      </>
-    
+    <>
+      <h1 className="text-5xl font-bold">
+        Welcome back{" "}
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+          {user}
+        </span>
+        <span>👋</span>
+      </h1>
+      {avatar === "default_avatar" && (
+        <div>
+          <h4>Select an image to upload</h4>
+          <input type="file" onChange={uploadToClient} />
+          <button
+            className="md:p-2 rounded py-2 text-black bg-purple-200 p-2"
+            type="submit"
+            onClick={uploadToServer}
+          >
+            Set Profile Image
+          </button>
+        </div>
+      )}
+      {/* eslint-disable @next/next/no-img-element */}
+      {avatar && (
+        <img
+          src={`https://res.cloudinary.com/tamas-demo/image/upload/f_auto,q_auto,w_150,h_150,g_face,c_thumb,r_max/${avatar}`}
+          alt="Profile"
+        />
+      )}
+    </>
   );
 };
 

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useFetchUser } from "../lib/authContext";
+import { useFetchUser } from "../../lib/authContext";
 import { useState } from "react";
-import { fetcher } from "../lib/api";
-import { setToken, unsetToken } from "../lib/auth";
-import { useUser } from "../lib/authContext";
+import { fetcher } from "../../lib/api";
+import { setToken, unsetToken } from "../../lib/auth";
+import { useUser } from "../../lib/authContext";
 //import { Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
@@ -74,9 +74,9 @@ function Login() {
       {!loading && !user ? (
         <>
           <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">Login</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-login">Login</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-password"
+              id="outlined-adornment-login"
               endAdornment={
                 <InputAdornment position="start">
                   <AccountCircle />

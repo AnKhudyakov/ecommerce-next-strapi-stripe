@@ -1,6 +1,6 @@
 import { useTheme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
-import { shades } from "../lib/theme";
+import { shades } from "../../lib/theme";
 
 function Footer() {
   const {
@@ -59,12 +59,12 @@ function Footer() {
             Contact Us
           </Typography>
           <Typography mb="30px">
-            50 north Whatever Blvd, Washington, DC 10501
+            622 Dixie Path, South Tobinchester, UT 98336
           </Typography>
           <Typography mb="30px" sx={{ wordWrap: "break-word" }}>
-            Email: mredwardroh@gmail.com
+            Email: test@gmail.com
           </Typography>
-          <Typography mb="30px">(222)333-4444</Typography>
+          <Typography mb="30px">(+1) 234 56 78</Typography>
         </Box>
       </Box>
     </Box>

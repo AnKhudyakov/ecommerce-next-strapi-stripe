@@ -2,13 +2,9 @@ import { Box, Button, Divider, IconButton, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
-import { shades } from "../lib/theme";
-import { setIsProfileOpen } from "../state/profileSlice";
-import { useRouter } from "next/router";
-import { useFetchUser } from "../lib/authContext";
-import { useState } from "react";
-import { fetcher } from "../lib/api";
-import { getIdFromLocalCookie, getTokenFromServerCookie } from "../lib/auth";
+import { shades } from "../../lib/theme";
+import { setIsProfileOpen } from "../../state/profileSlice";
+import { useFetchUser } from "../../lib/authContext";
 import Login from "./Login";
 import Profile from "./Profile";
 
