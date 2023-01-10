@@ -32,7 +32,7 @@ const MainCarousel = () => {
             position: "absolute",
             top: "50%",
             left: "0",
-            color: "white",
+            color: "grey",
             padding: "5px",
             zIndex: "10",
           }}
@@ -47,7 +47,7 @@ const MainCarousel = () => {
             position: "absolute",
             top: "50%",
             right: "0",
-            color: "white",
+            color: "grey",
             padding: "5px",
             zIndex: "10",
           }}
@@ -64,11 +64,12 @@ const MainCarousel = () => {
               justifyContent: "center",
               alignItems: "center",
               //marginTop: "60px",
+              marginLeft: "15%",
               width: "100%",
               height: "100vh",
-              padding: "60px 0px 0px 0px",
+              padding: "80px 0px 0px 0px",
               backgroundAttachment: "fixed",
-              backgroundColor: "#1d1d1f",
+              //backgroundColor: "#1d1d1f",
               position: "relative",
             }}
           >
