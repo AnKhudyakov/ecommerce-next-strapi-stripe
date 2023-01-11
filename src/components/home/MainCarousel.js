@@ -17,7 +17,6 @@ export const heroTextureImports = importAll(
 );
 
 const MainCarousel = () => {
-  console.log(Object.values(heroTextureImports));
   const isNonMobile = useMediaQuery("(min-width:600px)");
   return (
     <Carousel

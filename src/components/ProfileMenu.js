@@ -7,6 +7,7 @@ import { setIsProfileOpen } from "../../state/profileSlice";
 import { useFetchUser } from "../../lib/authContext";
 import Login from "./Login";
 import Profile from "./Profile";
+import { unsetToken } from "../../lib/auth";
 
 const FlexBox = styled(Box)`
   display: flex;
@@ -15,8 +16,8 @@ const FlexBox = styled(Box)`
 `;
 
 const ProfileMenu = () => {
-    const { user, loading } = useFetchUser();
-  
+  const { user, loading } = useFetchUser();
+
   //const router = useRouter();
   const dispatch = useDispatch();
   const isProfileOpen = useSelector((state) => state.profile.isProfileOpen);
@@ -24,6 +25,10 @@ const ProfileMenu = () => {
   const handleClick = () => {
     //router.redirect("/checkout");
     dispatch(setIsProfileOpen({}));
+  };
+
+  const handleSingOut = () => {
+    unsetToken();
   };
 
   return (
@@ -64,23 +69,26 @@ const ProfileMenu = () => {
               <Typography fontWeight="bold">SING IN</Typography>
             </FlexBox>
 
-            {user?<Profile/>:<Login/>}
-            
-            <Button
-              sx={{
-                backgroundColor: shades.primary[400],
-                color: "white",
-                borderRadius: 0,
-                minWidth: "100%",
-                padding: "20px 40px",
-                m: "20px 0",
-              }}
-              onClick={() => {
-                handleClick;
-              }}
-            >
-              SING IN
-            </Button>
+            {user ? (
+              <div>
+                <Profile />
+                <Button
+                  sx={{
+                    backgroundColor: shades.primary[400],
+                    color: "white",
+                    borderRadius: 0,
+                    minWidth: "100%",
+                    padding: "20px 40px",
+                    m: "20px 0",
+                  }}
+                  onClick={handleSingOut}
+                >
+                  SING OUT
+                </Button>
+              </div>
+            ) : (
+              <Login />
+            )}
           </Box>
         </Box>
       </Box>

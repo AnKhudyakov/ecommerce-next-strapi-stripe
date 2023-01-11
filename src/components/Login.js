@@ -5,7 +5,7 @@ import { fetcher } from "../../lib/api";
 import { setToken, unsetToken } from "../../lib/auth";
 import { useUser } from "../../lib/authContext";
 //import { Typography } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
+//import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
 import FilledInput from "@mui/material/FilledInput";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -18,6 +18,8 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Link from "@mui/material/Link";
+import { Button, IconButton } from "@mui/material";
+import { shades } from "../../lib/theme";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -38,11 +40,14 @@ function Login() {
     unsetToken();
   };
 
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const responseData = await fetcher(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/auth/local`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}auth/local`,
       {
         method: "POST",
         headers: {
@@ -59,18 +64,6 @@ function Login() {
 
   return (
     <div className="hidden w-full md:flex md:items-center md:w-auto" id="menu">
-      {!loading &&
-        (user ? (
-          <a
-            className="md:p-2 py-2 block hover:text-purple-400"
-            onClick={logout}
-            style={{ cursor: "pointer" }}
-          >
-            Logout
-          </a>
-        ) : (
-          ""
-        ))}
       {!loading && !user ? (
         <>
           <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
@@ -82,6 +75,8 @@ function Login() {
                   <AccountCircle />
                 </InputAdornment>
               }
+              name="identifier"
+              onChange={handleChange}
               label="Login"
             />
           </FormControl>
@@ -105,60 +100,25 @@ function Login() {
                   </IconButton>
                 </InputAdornment>
               }
+              onChange={handleChange}
+              name="password"
               label="Password"
             />
           </FormControl>
+          <Button
+            sx={{
+              backgroundColor: shades.primary[400],
+              color: "white",
+              borderRadius: 0,
+              minWidth: "100%",
+              padding: "20px 40px",
+              m: "20px 0",
+            }}
+            onClick={handleSubmit}
+          >
+            SING IN
+          </Button>
 
-          {/*   <form onSubmit={handleSubmit} className="form-inline">
-             <TextField
-              // html input attribute
-              name="email"
-              type="email"
-              placeholder="johndoe@email.com"
-              // pass down to FormLabel as children
-              label="Email"
-            />
-            <TextField
-              name="password"
-              type="password"
-              placeholder="password"
-              label="Password"
-            /> 
-
-            <Button >Log in</Button>
-            <Typography
-              endDecorator={<Link href="/sign-up">Sign up</Link>}
-              fontSize="sm"
-              sx={{ alignSelf: "center" }}
-            >
-              Don't have an account?
-            </Typography>
-
-            
-            {/* <input
-                  type="text"
-                  name="identifier"
-                  onChange={handleChange}
-                  placeholder="Username"
-                  className="md:p-2 form-input py-2 rounded mx-2"
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  placeholder="Password"
-                  className="md:p-2 form-input py-2 rounded mx-2"
-                  required
-                /> 
-
-                <button
-                  className="md:p-2 rounded py-2 text-black bg-purple-200 p-2"
-                  type="submit"
-                >
-                  Login
-                </button>
-          </form> */}
           <div>
             Do you have an account?{" "}
             <Link

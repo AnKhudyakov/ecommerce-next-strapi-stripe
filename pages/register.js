@@ -1,6 +1,6 @@
 import { useFetchUser } from "../lib/authContext";
-import Layout from "../components/Layout";
-import { default as RegisterComponent } from "../components/Register";
+import Layout from "../src/components/Layout";
+import { default as RegisterComponent } from "../src/components/Register";
 import { store } from "./index";
 import { Provider } from "react-redux";
 import { theme } from "../lib/theme";
