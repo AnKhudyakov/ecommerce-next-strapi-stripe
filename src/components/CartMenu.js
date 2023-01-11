@@ -72,7 +72,7 @@ const CartMenu = () => {
                       alt={item?.name}
                       width="123px"
                       height="164px"
-                      src={`http://localhost:2000${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                      src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url.replace("googleapis", "cloud.google")}`}
                     />
                   </Box>
                   <Box flex="1 1 60%">

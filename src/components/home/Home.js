@@ -6,7 +6,7 @@ function HomePage() {
   return (
     <div className="home">
       <MainCarousel />
-      {/* <ShoppingList /> */}
+       <ShoppingList /> 
       <Subscribe />
     </div>
   );

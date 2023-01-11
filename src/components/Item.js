@@ -26,7 +26,7 @@ const Item = ({ item, width }) => {
       },
     },
   } = image;
-
+  console.log(name);
   const handleClick = () => {
     router.redirect(`/item/${item.id}`);
   };
@@ -38,14 +38,21 @@ const Item = ({ item, width }) => {
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
       >
-        <img
-          alt={item.name}
-          width="300px"
-          height="400px"
-          src={`http://localhost:2000${url}`}
-          onClick={handleClick}
-          style={{ cursor: "pointer" }}
-        />
+        {" "}
+        <div style={{ width: "300px", height: "400px" }}>
+          <img
+            alt={item.name}
+            src={`${url.replace("googleapis", "cloud.google")}`}
+            onClick={handleClick}
+            style={{
+              cursor: "pointer",
+              maxWidth: "100%",
+              maxHeight: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          />
+        </div>
         <Box
           display={isHovered ? "block" : "none"}
           position="absolute"
@@ -83,9 +90,10 @@ const Item = ({ item, width }) => {
 
       <Box mt="3px">
         <Typography variant="subtitle2" color={neutral.dark}>
-          {category
-            .replace(/([A-Z])/g, " $1")
-            .replace(/^./, (str) => str.toUpperCase())}
+          {category.data.attributes.Name.replace(/([A-Z])/g, " $1").replace(
+            /^./,
+            (str) => str.toUpperCase()
+          )}
         </Typography>
         <Typography>{name}</Typography>
         <Typography fontWeight="bold">${price}</Typography>

@@ -7,38 +7,36 @@ import { Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
 import { setItems } from "../../../state";
+import { fetcher } from "../../../lib/api";
 
 const ShoppingList = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("all");
   const items = useSelector((state) => state.cart.items);
   const breakPoint = useMediaQuery("(min-width:600px)");
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   async function getItems() {
-    const items = await fetch(
-      "http://localhost:2000/api/items?populate=image",
-      { method: "GET" }
+    const items = await fetcher(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
     );
-    const itemsJson = await items.json();
-    dispatch(setItems(itemsJson.data));
+    dispatch(setItems(items.data));
   }
 
   useEffect(() => {
     getItems();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const topRatedItems = items.filter(
-    (item) => item.attributes.category === "topRated"
+  const accessories = items.filter(
+    (item) => item.attributes.category.data.attributes.Name === "Accessories"
   );
-  const newArrivalsItems = items.filter(
-    (item) => item.attributes.category === "newArrivals"
+  const mac = items.filter(
+    (item) => item.attributes.category.data.attributes.Name === "Mac"
   );
-  const bestSellersItems = items.filter(
-    (item) => item.attributes.category === "bestSellers"
+  const iphone = items.filter(
+    (item) => item.attributes.category.data.attributes.Name === "Iphone"
   );
 
   return (
@@ -61,9 +59,9 @@ const ShoppingList = () => {
         }}
       >
         <Tab label="ALL" value="all" />
-        <Tab label="NEW ARRIVALS" value="newArrivals" />
-        <Tab label="BEST SELLERS" value="bestSellers" />
-        <Tab label="TOP RATED" value="topRated" />
+        <Tab label="Mac" value="Mac" />
+        <Tab label="Iphone" value="Iphone" />
+        <Tab label="Accessories" value="Accessories" />
       </Tabs>
       <Box
         margin="0 auto"
@@ -75,19 +73,19 @@ const ShoppingList = () => {
       >
         {value === "all" &&
           items.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+            <Item item={item} key={`${item.attributes.name}-${item.id}`} />
           ))}
-        {value === "newArrivals" &&
-          newArrivalsItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+        {value === "Mac" &&
+          mac.map((item) => (
+            <Item item={item} key={`${item.attributes.name}-${item.id}`} />
           ))}
-        {value === "bestSellers" &&
-          bestSellersItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+        {value === "Iphone" &&
+          iphone.map((item) => (
+            <Item item={item} key={`${item.attributes.name}-${item.id}`} />
           ))}
-        {value === "topRated" &&
-          topRatedItems.map((item) => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+        {value === "Accessories" &&
+          accessories.map((item) => (
+            <Item item={item} key={`${item.attributes.name}-${item.id}`} />
           ))}
       </Box>
     </Box>
