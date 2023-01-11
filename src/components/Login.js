@@ -17,13 +17,16 @@ import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import Link from "@mui/material/Link";
+//import Link from "@mui/material/Link";
 import { Button, IconButton } from "@mui/material";
 import { shades } from "../../lib/theme";
+import Link from "next/link";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsProfileOpen } from "../../state/profileSlice";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const dispatch = useDispatch();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
@@ -123,9 +126,12 @@ function Login() {
             Do you have an account?{" "}
             <Link
               href="/register"
-              color="#4285f4"
-              underline="hover"
+              style={{
+                color: "#4285f4",
+                textDecoration: "underline",
+              }}
               className="md:p-2 block py-2 hover:text-purple-400 text-black"
+              onClick={() => dispatch(setIsProfileOpen({}))}
             >
               Sign up
             </Link>

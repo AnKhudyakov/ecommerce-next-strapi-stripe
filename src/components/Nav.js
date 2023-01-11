@@ -19,6 +19,7 @@ const Nav = () => {
   const cart = useSelector((state) => state.cart.cart);
 
   const handleClick = () => {
+    e.preventDefault();
     router.redirect("/");
   };
 
