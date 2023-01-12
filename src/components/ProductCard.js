@@ -17,7 +17,6 @@ function ProductCard({ item, items, description }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   return (
     <Box width="80%" m="80px auto">
       <Box display="flex" flexWrap="wrap" columnGap="40px">
@@ -45,9 +44,10 @@ function ProductCard({ item, items, description }) {
           <Box m="65px 0 25px 0">
             <Typography variant="h3">{item?.attributes?.name}</Typography>
             <Typography>${item?.attributes?.price}</Typography>
-            <Typography sx={{ mt: "20px" }}>
+            <div dangerouslySetInnerHTML={{ __html: description }}></div>
+            {/* <Typography sx={{ mt: "20px" }}>
               <div dangerouslySetInnerHTML={{ __html: description }}></div>
-            </Typography>
+            </Typography> */}
           </Box>
 
           <Box display="flex" alignItems="center" minHeight="50px">
