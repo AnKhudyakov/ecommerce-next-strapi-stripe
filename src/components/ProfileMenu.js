@@ -27,7 +27,8 @@ const ProfileMenu = () => {
     dispatch(setIsProfileOpen({}));
   };
 
-  const handleSingOut = () => {
+  const handleSingOut = (e) => {
+    e.preventDefault();
     unsetToken();
   };
 
