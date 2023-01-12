@@ -18,10 +18,10 @@ const Nav = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
 
-  const handleClick = () => {
-    e.preventDefault();
-    router.redirect("/");
-  };
+  // const handleClick = () => {
+  //   e.preventDefault();
+  //   router.redirect("/");
+  // };
 
   return (
     <nav
@@ -56,15 +56,16 @@ const Nav = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          {/* <Link href="/" passHref> */}
+          <Link href="/" passHref>
           <Box
-            onClick={() => handleClick}
+            //onClick={() => handleClick}
             sx={{ "&:hover": { cursor: "pointer" } }}
             color={shades.secondary[500]}
           >
+
             ECOMMER
           </Box>
-          {/* </Link> */}
+          </Link>
           <Box
             display="flex"
             justifyContent="space-between"

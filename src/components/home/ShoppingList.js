@@ -67,6 +67,7 @@ const ShoppingList = () => {
         margin="0 auto"
         display="grid"
         gridTemplateColumns="repeat(auto-fill, 300px)"
+        gridTemplateRows="repeat(auto-fill, 400px)"
         justifyContent="space-around"
         rowGap="20px"
         columnGap="1.33%"

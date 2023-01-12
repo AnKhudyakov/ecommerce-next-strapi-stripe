@@ -71,7 +71,7 @@ const CartMenu = () => {
                     <img
                       alt={item?.name}
                       width="123px"
-                      height="164px"
+                      max-height="164px"
                       src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url.replace("googleapis", "cloud.google")}`}
                     />
                   </Box>

@@ -6,6 +6,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../../lib/theme";
 import { addToCart } from "../../state";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Item = ({ item, width }) => {
   const router = useRouter();
@@ -26,33 +27,33 @@ const Item = ({ item, width }) => {
       },
     },
   } = image;
-  console.log(name);
-  const handleClick = () => {
-    router.redirect(`/item/${item.id}`);
-  };
 
   return (
-    <Box width={width}>
+    <Box>
       <Box
         position="relative"
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
+        width="300px"
+        height="400px"
+        display="flex"
+        alignItems="center"
       >
         {" "}
-        <div style={{ width: "300px", height: "400px" }}>
+        <Link href={`/product/${item.id}`}>
           <img
             alt={item.name}
             src={`${url.replace("googleapis", "cloud.google")}`}
-            onClick={handleClick}
+            //onClick={() => handleClick}
             style={{
               cursor: "pointer",
-              maxWidth: "100%",
-              maxHeight: "100%",
+              maxWidth: "300px",
+              maxHeight: "400px",
               objectFit: "cover",
               objectPosition: "center",
             }}
           />
-        </div>
+        </Link>
         <Box
           display={isHovered ? "block" : "none"}
           position="absolute"
