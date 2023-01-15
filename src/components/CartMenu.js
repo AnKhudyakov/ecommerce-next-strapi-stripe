@@ -73,10 +73,7 @@ const CartMenu = memo(() => {
                       alt={item?.name}
                       width="123px"
                       max-height="164px"
-                      src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url.replace(
-                        "googleapis",
-                        "cloud.google"
-                      )}`}
+                      src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                     />
                   </Box>
                   <Box flex="1 1 60%">

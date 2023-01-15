@@ -27,10 +27,7 @@ const ProductCard = memo(({ item, items, description }) => {
             alt={item?.name}
             width="100%"
             height="100%"
-            src={`${item.attributes.image.data.attributes.formats.medium.url.replace(
-              "googleapis",
-              "cloud.google"
-            )}`}
+            src={`${item.attributes.image.data.attributes.formats.medium.url}`}
             style={{ objectFit: "contain" }}
           />
         </Box>

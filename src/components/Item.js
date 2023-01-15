@@ -44,7 +44,7 @@ const Item = memo(({ item, width }) => {
         <Link href={`/product/${item.id}`}>
           <img
             alt={item.name}
-            src={`${url.replace("googleapis", "cloud.google")}`}
+            src={`${url}`}
             //onClick={() => handleClick}
             style={{
               cursor: "pointer",
