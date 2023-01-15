@@ -48,10 +48,10 @@ export async function getServerSideProps({ req, params }) {
   //   const ProductResponse = await fetcher(
   //     `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
   //   );
-  const ProductsResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
-  );
-  console.log("ProductsResponse", ProductsResponse);
+  //   const ProductsResponse = await fetcher(
+  //     `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
+  //   );
+  //   console.log("ProductsResponse", ProductsResponse);
   //   if (ProductResponse.data) {
   //     console.log("ProductResponse.data", ProductResponse.data);
   //     const description = await markdownToHtml(
