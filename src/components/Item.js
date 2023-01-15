@@ -7,9 +7,8 @@ import { shades } from "../../lib/theme";
 import { addToCart } from "../../state";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { memo } from "react";
 
-const Item = memo(({ item, width }) => {
+const Item = ({ item, width }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
@@ -102,6 +101,6 @@ const Item = memo(({ item, width }) => {
       </Box>
     </Box>
   );
-})
+}
 
 export default Item;

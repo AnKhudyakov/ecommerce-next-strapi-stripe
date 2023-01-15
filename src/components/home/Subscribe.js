@@ -3,7 +3,7 @@ import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined
 import { useState } from "react";
 import { memo } from "react";
 
-const Subscribe = memo(() => {
+const Subscribe = () => {
   const [email, setEmail] = useState("");
   return (
     <Box width="80%" margin="80px auto" textAlign="center">
@@ -35,6 +35,6 @@ const Subscribe = memo(() => {
       </Box>
     </Box>
   );
-});
+};
 
 export default Subscribe;

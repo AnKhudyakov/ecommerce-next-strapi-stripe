@@ -17,7 +17,7 @@ export const heroTextureImports = importAll(
   require.context("../../assets", false, /\.(png|jpe?g|svg)$/)
 );
 
-const MainCarousel =memo( () => {
+const MainCarousel = () => {
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
   return (
@@ -118,6 +118,6 @@ const MainCarousel =memo( () => {
     </Carousel>
   );
 }
-)
+
 
 export default MainCarousel;

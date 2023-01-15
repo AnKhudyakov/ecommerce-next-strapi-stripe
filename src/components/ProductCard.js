@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { memo } from "react";
 
-const ProductCard = memo(({ item, items, description }) => {
+const ProductCard = ({ item, items, description }) => {
   const [value, setValue] = useState("description");
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
@@ -122,6 +122,6 @@ const ProductCard = memo(({ item, items, description }) => {
       </Box>
     </Box>
   );
-});
+}
 
 export default ProductCard;

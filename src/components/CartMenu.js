@@ -12,7 +12,6 @@ import {
   setIsCartOpen,
 } from "../../state";
 import { useRouter } from "next/router";
-import { memo } from "react";
 
 const FlexBox = styled(Box)`
   display: flex;
@@ -20,7 +19,7 @@ const FlexBox = styled(Box)`
   align-items: center;
 `;
 
-const CartMenu = memo(() => {
+const CartMenu = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
@@ -149,6 +148,6 @@ const CartMenu = memo(() => {
       </Box>
     </Box>
   );
-});
+};
 
 export default CartMenu;

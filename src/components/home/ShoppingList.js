@@ -10,7 +10,7 @@ import { setItems } from "../../../state";
 import { fetcher } from "../../../lib/api";
 import { memo } from "react";
 
-const ShoppingList = memo(() => {
+const ShoppingList =() => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("all");
   const items = useSelector((state) => state.cart.items);
@@ -91,6 +91,6 @@ const ShoppingList = memo(() => {
       </Box>
     </Box>
   );
-});
+}
 
 export default ShoppingList;
