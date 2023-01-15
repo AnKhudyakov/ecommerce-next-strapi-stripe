@@ -45,32 +45,33 @@ const Id = ({ item, items, description, error }) => {
 export async function getServerSideProps({ req, params }) {
   const { id } = params;
   console.log("DOWNLOAD ID=", id);
-  const ProductResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
-  );
-  //   const ProductsResponse = await fetcher(
-  //     `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
+  //   const ProductResponse = await fetcher(
+  //     `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
   //   );
-  if (ProductResponse.data) {
-    console.log("ProductResponse.data", ProductResponse.data);
-    const description = await markdownToHtml(
-      ProductResponse.data.attributes.description
-    );
-    console.log("description", description);
-    return {
-      props: {
-        item: ProductResponse.data,
-        //items: ProductsResponse,
-        description,
-      },
-    };
-  } else {
-    return {
-      props: {
-        error: ProductResponse.error.message,
-      },
-    };
-  }
+  const ProductsResponse = await fetcher(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
+  );
+  console.log("ProductsResponse", ProductsResponse);
+  //   if (ProductResponse.data) {
+  //     console.log("ProductResponse.data", ProductResponse.data);
+  //     const description = await markdownToHtml(
+  //       ProductResponse.data.attributes.description
+  //     );
+  //     console.log("description", description);
+  //     return {
+  //       props: {
+  //         item: ProductResponse.data,
+  //         //items: ProductsResponse,
+  //         description,
+  //       },
+  //     };
+  //   } else {
+  //     return {
+  //       props: {
+  //         error: ProductResponse.error.message,
+  //       },
+  //     };
+  //   }
 }
 
 export default Id;
