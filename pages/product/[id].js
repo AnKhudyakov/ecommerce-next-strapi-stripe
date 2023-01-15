@@ -13,9 +13,8 @@ import ProductCard from "../../src/components/ProductCard";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../lib/theme";
-import { memo } from "react";
 
-const Id = memo(({ item, items, description, error }) => {
+const Id = ({ item, items, description, error }) => {
   const { user, loading } = useFetchUser();
   if (error) {
     return (
@@ -38,7 +37,7 @@ const Id = memo(({ item, items, description, error }) => {
       </Provider>
     );
   }
-});
+};
 
 export async function getServerSideProps({ req, params }) {
   const { id } = params;
