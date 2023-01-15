@@ -16,6 +16,8 @@ import { theme } from "../../lib/theme";
 
 const Id = ({ item, items, description, error }) => {
   console.log("ITEM", item);
+  console.log("ITEMS", items);
+  console.log("description", description);
   const { user, loading } = useFetchUser();
   if (error) {
     return (
@@ -32,7 +34,7 @@ const Id = ({ item, items, description, error }) => {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Layout user={user}>
-            <ProductCard item={item} description={description} items={items} />
+            {/* <ProductCard item={item} description={description} items={items} /> */}
           </Layout>
         </ThemeProvider>
       </Provider>
