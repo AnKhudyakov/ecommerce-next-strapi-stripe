@@ -15,6 +15,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../lib/theme";
 
 const Id = ({ item, items, description, error }) => {
+  console.log("ITEM", item);
   const { user, loading } = useFetchUser();
   if (error) {
     return (
@@ -45,6 +46,7 @@ export async function getServerSideProps({ req, params }) {
   //     typeof window !== 'undefined'
   //       ? getTokenFromLocalCookie
   //       : getTokenFromServerCookie(req);
+  console.log("DOWNLOAD ID=", id);
   const ProductResponse = await fetcher(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
   );
@@ -52,9 +54,11 @@ export async function getServerSideProps({ req, params }) {
     `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
   );
   if (ProductResponse.data) {
+    console.log("ProductResponse.data", ProductResponse.data);
     const description = await markdownToHtml(
       ProductResponse.data.attributes.description
     );
+    console.log("description", description);
     return {
       props: {
         item: ProductResponse.data,
