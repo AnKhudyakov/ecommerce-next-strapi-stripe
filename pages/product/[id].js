@@ -15,10 +15,11 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../lib/theme";
 
 const Id = ({ item, items, description, error }) => {
-  console.log("ITEM", item);
+  //console.log("ITEM", item);
   console.log("ITEMS", items);
-  console.log("description", description);
+  //console.log("description", description);
   const { user, loading } = useFetchUser();
+
   if (error) {
     return (
       <Provider store={store}>
@@ -43,14 +44,14 @@ const Id = ({ item, items, description, error }) => {
 };
 
 export async function getServerSideProps({ req, params }) {
-  const { id } = params;
-  console.log("DOWNLOAD ID=", id);
+  //const { id } = params;
+  //console.log("DOWNLOAD ID=", id);
   //   const ProductResponse = await fetcher(
   //     `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
   //   );
-  //   const ProductsResponse = await fetcher(
-  //     `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
-  //   );
+    const ProductsResponse = await fetcher(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
+    );
   //   console.log("ProductsResponse", ProductsResponse);
   //   if (ProductResponse.data) {
   //     console.log("ProductResponse.data", ProductResponse.data);
@@ -58,13 +59,13 @@ export async function getServerSideProps({ req, params }) {
   //       ProductResponse.data.attributes.description
   //     );
   //     console.log("description", description);
-  //     return {
-  //       props: {
-  //         item: ProductResponse.data,
-  //         //items: ProductsResponse,
-  //         description,
-  //       },
-  //     };
+      return {
+        props: {
+          //item: ProductResponse.data,
+          items: ProductsResponse,
+         //description,
+        },
+      };
   //   } else {
   //     return {
   //       props: {
