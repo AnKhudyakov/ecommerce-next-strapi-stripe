@@ -8,7 +8,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
 import { setItems } from "../../../state";
 import { fetcher } from "../../../lib/api";
-import { memo } from "react";
 
 const ShoppingList =() => {
   const dispatch = useDispatch();

@@ -7,17 +7,38 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../../lib/theme";
 import { addToCart } from "../../state";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { setItem } from "../../state";
+import { fetcher } from "../../lib/api";
+import markdownToHtml from "../../lib/markdownToHtml";
 
-const ProductCard = ({ item, items, description }) => {
+const ProductCard = ({ id }) => {
+  const dispatch = useDispatch();
+  const item = useSelector((state) => state.cart.item);
   const [value, setValue] = useState("description");
   const [count, setCount] = useState(1);
-  const dispatch = useDispatch();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  async function getItems() {
+    const item = await fetcher(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
+    );
+    if (item.data) {
+      const description = await markdownToHtml(
+        item.data.attributes.description
+      );
+    }
+    dispatch(setItem(item.data));
+  }
+
+  useEffect(() => {
+    getItems();
+  }, []);
+
   return (
     <Box width="80%" m="80px auto">
       <Box display="flex" flexWrap="wrap" columnGap="40px">
@@ -27,7 +48,7 @@ const ProductCard = ({ item, items, description }) => {
             alt={item?.name}
             width="100%"
             height="100%"
-            src={`${item.attributes.image.data.attributes.formats.medium.url}`}
+            src={`${item?.attributes?.image?.data.attributes.formats.medium.url}`}
             style={{ objectFit: "contain" }}
           />
         </Box>
@@ -42,7 +63,11 @@ const ProductCard = ({ item, items, description }) => {
           <Box m="65px 0 25px 0">
             <Typography variant="h3">{item?.attributes?.name}</Typography>
             <Typography>${item?.attributes?.price}</Typography>
-            <div dangerouslySetInnerHTML={{ __html: description }}></div>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: item?.attributes?.description,
+              }}
+            ></div>
             {/* <Typography sx={{ mt: "20px" }}>
               <div dangerouslySetInnerHTML={{ __html: description }}></div>
             </Typography> */}
@@ -98,7 +123,9 @@ const ProductCard = ({ item, items, description }) => {
       </Box>
       <Box display="flex" flexWrap="wrap" gap="15px">
         {value === "description" && (
-          <div dangerouslySetInnerHTML={{ __html: description }}></div>
+          <div
+            dangerouslySetInnerHTML={{ __html: item?.attributes?.description }}
+          ></div>
         )}
         {value === "reviews" && <div>reviews</div>}
       </Box>
@@ -115,13 +142,13 @@ const ProductCard = ({ item, items, description }) => {
           columnGap="1.33%"
           justifyContent="space-between"
         >
-          {items.data.slice(0, 4).map((item, i) => (
+          {/* {items.data.slice(0, 4).map((item, i) => (
             <Item key={`${item.attributes.name}-${i}`} item={item} />
-          ))}
+          ))} */}
         </Box>
       </Box>
     </Box>
   );
-}
+};
 
 export default ProductCard;
