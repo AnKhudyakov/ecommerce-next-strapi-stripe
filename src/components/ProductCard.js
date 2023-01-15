@@ -9,8 +9,9 @@ import { shades } from "../../lib/theme";
 import { addToCart } from "../../state";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { memo } from "react";
 
-function ProductCard({ item, items, description }) {
+const ProductCard = memo(({ item, items, description }) => {
   const [value, setValue] = useState("description");
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
@@ -124,6 +125,6 @@ function ProductCard({ item, items, description }) {
       </Box>
     </Box>
   );
-}
+});
 
 export default ProductCard;

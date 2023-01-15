@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { shades } from "../../../lib/theme";
+import { memo } from 'react';
 
 // imports all images from assets folder
 const importAll = (r) =>
@@ -16,7 +17,8 @@ export const heroTextureImports = importAll(
   require.context("../../assets", false, /\.(png|jpe?g|svg)$/)
 );
 
-const MainCarousel = () => {
+const MainCarousel =memo( () => {
+
   const isNonMobile = useMediaQuery("(min-width:600px)");
   return (
     <Carousel
@@ -115,6 +117,7 @@ const MainCarousel = () => {
       ))}
     </Carousel>
   );
-};
+}
+)
 
 export default MainCarousel;

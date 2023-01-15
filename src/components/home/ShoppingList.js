@@ -8,8 +8,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
 import { setItems } from "../../../state";
 import { fetcher } from "../../../lib/api";
+import { memo } from "react";
 
-const ShoppingList = () => {
+const ShoppingList = memo(() => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("all");
   const items = useSelector((state) => state.cart.items);
@@ -17,7 +18,6 @@ const ShoppingList = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   async function getItems() {
     const items = await fetcher(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
@@ -91,6 +91,6 @@ const ShoppingList = () => {
       </Box>
     </Box>
   );
-};
+});
 
 export default ShoppingList;

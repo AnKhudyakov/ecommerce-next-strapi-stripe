@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { setToken } from "../../lib/auth";
 import { fetcher } from "../../lib/api";
+import { Button } from "@mui/material";
+import { shades } from "../../lib/theme";
 
 const Register = () => {
   const router = useRouter();
@@ -53,49 +55,61 @@ const Register = () => {
         <form
           onSubmit={handleSubmit}
           className="mb-4 md:flex md:flex-wrap md:justify-between"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            justifyContent: "center",
+          }}
         >
           <div className="flex flex-col mb-4 md:w-full">
-            <label className="font-bold text-lg mb-2" htmlFor="username">
-              Username
-            </label>
             <input
               className="border-2 py-2 px-3"
               type="text"
               name="username"
+              placeholder="Username"
               onChange={(e) => handleChange(e)}
               required
+              style={{ marginBottom: "20px", padding: "10px 30px" }}
             />
           </div>
           <div className="flex flex-col mb-4 md:w-full">
-            <label className="font-bold text-lg mb-2" htmlFor="email">
-              Email
-            </label>
             <input
               className="border-2 py-2 px-3"
               type="email"
               name="email"
+              placeholder="Email"
               onChange={(e) => handleChange(e)}
               required
+              style={{ marginBottom: "20px", padding: "10px 30px" }}
             />
           </div>
           <div className="flex flex-col mb-6 md:w-full">
-            <label className="font-bold text-lg mb-2" htmlFor="password">
-              Password
-            </label>
             <input
               className="border-2 py-2 px-3"
               type="password"
               name="password"
+              placeholder="Password"
               onChange={(e) => handleChange(e)}
               required
+              style={{ marginBottom: "10px", padding: "10px 30px" }}
             />
           </div>
-          <button
-            className="block bg-teal-400 text-lg rounded p-4 mx-auto"
-            type="submit"
-          >
-            Register
-          </button>
+          <div>
+            <Button
+              sx={{
+                backgroundColor: shades.primary[400],
+                color: "white",
+                borderRadius: 0,
+                minWidth: "100px",
+                padding: "20px 40px",
+                m: "20px 0",
+              }}
+              type="submit"
+            >
+              Register
+            </Button>
+          </div>
         </form>
       </div>
     </div>
