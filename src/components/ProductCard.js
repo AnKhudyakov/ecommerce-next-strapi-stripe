@@ -14,30 +14,30 @@ import { setItem } from "../../state";
 import { fetcher } from "../../lib/api";
 import markdownToHtml from "../../lib/markdownToHtml";
 
-const ProductCard = ({ id }) => {
+const ProductCard = ({item,items,description}) => {
   const dispatch = useDispatch();
-  const item = useSelector((state) => state.cart.item);
+  //const item = useSelector((state) => state.cart.item);
   const [value, setValue] = useState("description");
   const [count, setCount] = useState(1);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  async function getItems() {
-    const item = await fetcher(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
-    );
-    if (item.data) {
-      const description = await markdownToHtml(
-        item.data.attributes.description
-      );
-    }
-    dispatch(setItem(item.data));
-  }
+  // async function getItems() {
+  //   const item = await fetcher(
+  //     `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
+  //   );
+  //   if (item.data) {
+  //     const description = await markdownToHtml(
+  //       item.data.attributes.description
+  //     );
+  //   }
+  //   dispatch(setItem(item.data));
+  // }
 
-  useEffect(() => {
-    getItems();
-  }, []);
+  // useEffect(() => {
+  //   getItems();
+  // }, []);
 
   return (
     <Box width="80%" m="80px auto">
@@ -65,7 +65,7 @@ const ProductCard = ({ id }) => {
             <Typography>${item?.attributes?.price}</Typography>
             <div
               dangerouslySetInnerHTML={{
-                __html: item?.attributes?.description,
+                __html: description,
               }}
             ></div>
             {/* <Typography sx={{ mt: "20px" }}>
@@ -124,7 +124,7 @@ const ProductCard = ({ id }) => {
       <Box display="flex" flexWrap="wrap" gap="15px">
         {value === "description" && (
           <div
-            dangerouslySetInnerHTML={{ __html: item?.attributes?.description }}
+            dangerouslySetInnerHTML={{ __html: description }}
           ></div>
         )}
         {value === "reviews" && <div>reviews</div>}
@@ -142,9 +142,9 @@ const ProductCard = ({ id }) => {
           columnGap="1.33%"
           justifyContent="space-between"
         >
-          {/* {items.data.slice(0, 4).map((item, i) => (
+          {items.data.slice(0, 4).map((item, i) => (
             <Item key={`${item.attributes.name}-${i}`} item={item} />
-          ))} */}
+          ))}
         </Box>
       </Box>
     </Box>
