@@ -19,7 +19,8 @@ export const heroTextureImports = importAll(
 
 const MainCarousel = () => {
 
-  const isNonMobile = useMediaQuery("(min-width:600px)");
+  const isNonMobile = useMediaQuery("(min-width:800px)");
+  const isNonTablet = useMediaQuery("(min-width:1050px)");
   return (
     <Carousel
       infiniteLoop={true}
@@ -98,13 +99,18 @@ const MainCarousel = () => {
             backgroundColor="rgb(0, 0, 0, 0.4)"
             position="absolute"
             top="46%"
-            left={isNonMobile ? "10%" : "0"}
-            right={isNonMobile ? undefined : "0"}
+            maxHeight="300px"
+            left={isNonMobile ? "10%" : "7%"}
+            // right={isNonMobile ? undefined : "10px"}
             margin={isNonMobile ? undefined : "0 auto"}
-            maxWidth={isNonMobile ? undefined : "240px"}
+            maxWidth={isNonMobile ? undefined : "170px"}
+            // maxWidth={isNonTablet ? undefined : "180px"}
           >
             <Typography color={shades.secondary[200]}>-- NEW ITEMS</Typography>
-            <Typography variant="h1">Summer Sale</Typography>
+            {isNonTablet?
+              <Typography variant="h1">Summer Sale</Typography>:
+              <Typography variant="h2">Summer Sale</Typography>
+              }
             <Typography
               fontWeight="bold"
               color={shades.secondary[300]}
