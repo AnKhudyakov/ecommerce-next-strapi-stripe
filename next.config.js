@@ -7,6 +7,14 @@ const nextConfig = {
     // number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 2,
   },
+  async rewrites() {
+    return [
+      {
+        source: 'https://15.236.209.222:1337',
+        destination: 'http://15.236.209.222:1337',
+      },
+    ]
+  },
 };
 
 module.exports = nextConfig;
