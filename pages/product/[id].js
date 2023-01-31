@@ -43,7 +43,7 @@ const Id = ({ item, items, error, description }) => {
 
 export async function getStaticPaths() {
   const products = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}products`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products`
   );
   console.log(products.data);
   const paths = products.data.map((product) => ({
@@ -56,10 +56,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { id } = params;
   const ProductResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products/${id}?populate=%2A`
   );
   const ProductsResponse = await fetcher(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=%2A`
   );
   console.log("ProductsResponse", ProductsResponse);
   if (ProductResponse.data) {

@@ -33,7 +33,7 @@ export default async function upload(req, res) {
       const { public_id } = response;
       const jwt = getTokenFromServerCookie(req);
       const userResponse = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/users/${user_id}`,
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/users/${user_id}`,
         {
           method: 'PUT',
           headers: {

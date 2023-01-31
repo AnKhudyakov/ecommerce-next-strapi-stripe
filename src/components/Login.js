@@ -50,7 +50,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const responseData = await fetcher(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}auth/local`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local`,
       {
         method: "POST",
         headers: {

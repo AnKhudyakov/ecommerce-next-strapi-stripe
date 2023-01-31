@@ -19,7 +19,7 @@ const ShoppingList =() => {
   };
   async function getItems() {
     const items = await fetcher(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}products?populate=%2A`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=%2A`
     );
     dispatch(setItems(items.data));
   }

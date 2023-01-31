@@ -17,7 +17,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const responseData = await fetcher(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}auth/local/register`,
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`,
         {
           headers: {
             "Content-Type": "application/json",

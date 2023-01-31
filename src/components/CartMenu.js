@@ -29,7 +29,9 @@ const CartMenu = () => {
   }, 0);
 
   const handleClick = () => {
-    router.redirect("/checkout");
+    console.log("HERE",router);
+
+    router.replace("/checkout");
     dispatch(setIsCartOpen({}));
   };
 
@@ -72,7 +74,7 @@ const CartMenu = () => {
                       alt={item?.name}
                       width="123px"
                       max-height="164px"
-                      src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                     />
                   </Box>
                   <Box flex="1 1 60%">
@@ -137,9 +139,7 @@ const CartMenu = () => {
                 padding: "20px 40px",
                 m: "20px 0",
               }}
-              onClick={() => {
-                handleClick;
-              }}
+              onClick={handleClick}
             >
               CHECKOUT
             </Button>

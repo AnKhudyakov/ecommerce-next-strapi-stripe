@@ -77,7 +77,7 @@ export async function getServerSideProps({ req }) {
     };
   } else {
     const responseData = await fetcher(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}users/me`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/users/me`,
       {
         headers: {
           Authorization: `Bearer ${jwt}`,

@@ -48,7 +48,7 @@ const ProductCard = ({item,items,description}) => {
             alt={item?.name}
             width="100%"
             height="100%"
-            src={`${item?.attributes?.image?.data.attributes.formats.medium.url}`}
+            src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${item?.attributes?.image?.data.attributes.formats.medium.url}`}
             style={{ objectFit: "contain" }}
           />
         </Box>
