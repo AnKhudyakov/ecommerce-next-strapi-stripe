@@ -56,7 +56,7 @@ const MainCarousel = () => {
         >
           <NavigateNextIcon sx={{ fontSize: 40 }} />
         </IconButton>
-      )}
+      )} 
     >
       {Object.values(heroTextureImports).map((texture, index) => (
         <Box key={`carousel-image-${index}`}>
@@ -98,7 +98,7 @@ const MainCarousel = () => {
             textAlign="left"
             backgroundColor="rgb(0, 0, 0, 0.4)"
             position="absolute"
-            top="46%"
+            top={isNonMobile?"46%": "30%"}
             maxHeight="300px"
             left={isNonMobile ? "10%" : "7%"}
             // right={isNonMobile ? undefined : "10px"}
