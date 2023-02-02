@@ -43,7 +43,7 @@ const Item = ({ item, width }) => {
         <Link href={`/product/${item.id}`}>
           <img
             alt={item.name}
-            src={`${url}`}
+            src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`}
             //onClick={() => handleClick}
             style={{
               cursor: "pointer",

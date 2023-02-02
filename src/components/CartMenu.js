@@ -76,7 +76,7 @@ const CartMenu = () => {
                       alt={item?.name}
                       width="123px"
                       max-height="164px"
-                      src={`${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                     />
                   </Box>
                   <Box flex={isNonMobile?"1 1 60%":"1 1 50%"}>
