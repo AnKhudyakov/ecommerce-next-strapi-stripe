@@ -7,37 +7,17 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../../lib/theme";
 import { addToCart } from "../../state";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { setItem } from "../../state";
-import { fetcher } from "../../lib/api";
-import markdownToHtml from "../../lib/markdownToHtml";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+
 
 const ProductCard = ({item,items,description}) => {
   const dispatch = useDispatch();
-  //const item = useSelector((state) => state.cart.item);
   const [value, setValue] = useState("description");
   const [count, setCount] = useState(1);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  // async function getItems() {
-  //   const item = await fetcher(
-  //     `${process.env.NEXT_PUBLIC_STRAPI_URL}products/${id}?populate=%2A`
-  //   );
-  //   if (item.data) {
-  //     const description = await markdownToHtml(
-  //       item.data.attributes.description
-  //     );
-  //   }
-  //   dispatch(setItem(item.data));
-  // }
-
-  // useEffect(() => {
-  //   getItems();
-  // }, []);
 
   return (
     <Box width="80%" m="80px auto">

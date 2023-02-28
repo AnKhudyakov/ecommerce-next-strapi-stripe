@@ -58,7 +58,6 @@ const CheckoutForm = () => {
       sessionId: session.id,
     });
   }
-  console.log("activeStep",activeStep);
   return (
     <Box width="80%" m="100px auto">
       <Stepper activeStep={activeStep} sx={{ m: "20px 0" }}>

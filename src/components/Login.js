@@ -1,27 +1,19 @@
 import * as React from "react";
-import { useFetchUser } from "../../lib/authContext";
 import { useState } from "react";
 import { fetcher } from "../../lib/api";
 import { setToken, unsetToken } from "../../lib/auth";
 import { useUser } from "../../lib/authContext";
-//import { Typography } from "@mui/material";
-//import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-//import Link from "@mui/material/Link";
 import { Button, IconButton } from "@mui/material";
 import { shades } from "../../lib/theme";
 import Link from "next/link";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setIsProfileOpen } from "../../state/profileSlice";
 
 function Login() {

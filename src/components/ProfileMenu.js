@@ -1,4 +1,11 @@
-import { Box, Button, Divider, IconButton, Typography,useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
@@ -12,13 +19,11 @@ import { unsetToken } from "../../lib/auth";
 const FlexBox = styled(Box)`
   display: flex;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
 `;
 
 const ProfileMenu = () => {
   const { user, loading } = useFetchUser();
-
-  //const router = useRouter();
   const dispatch = useDispatch();
   const isProfileOpen = useSelector((state) => state.profile.isProfileOpen);
 
@@ -33,7 +38,6 @@ const ProfileMenu = () => {
   };
 
   const isNonMobile = useMediaQuery("(min-width:400px)");
-  //const isNonTablet = useMediaQuery("(min-width:1050px)");
 
   return (
     <Box
@@ -51,7 +55,7 @@ const ProfileMenu = () => {
         position="fixed"
         right="0"
         bottom="0"
-        width={isNonMobile?"max(400px, 30%)":"max(350px, 30%)"}
+        width={isNonMobile ? "max(400px, 30%)" : "max(350px, 30%)"}
         height="100%"
         backgroundColor="white"
       >

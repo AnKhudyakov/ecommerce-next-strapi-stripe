@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Nav from "./Nav";
 import { UserProvider } from "../../lib/authContext";
-import styles from "../../styles/Home.module.css";
-import Image from "next/image";
 import Footer from "./Footer";
 import CartMenu from "./CartMenu";
 import ProfileMenu from "./ProfileMenu";

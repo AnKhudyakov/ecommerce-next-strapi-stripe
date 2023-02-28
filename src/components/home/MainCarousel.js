@@ -4,7 +4,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { shades } from "../../../lib/theme";
-import { memo } from 'react';
 
 // imports all images from assets folder
 const importAll = (r) =>
@@ -18,7 +17,6 @@ export const heroTextureImports = importAll(
 );
 
 const MainCarousel = () => {
-
   const isNonMobile = useMediaQuery("(min-width:800px)");
   const isNonTablet = useMediaQuery("(min-width:1050px)");
   return (
@@ -56,7 +54,7 @@ const MainCarousel = () => {
         >
           <NavigateNextIcon sx={{ fontSize: 40 }} />
         </IconButton>
-      )} 
+      )}
     >
       {Object.values(heroTextureImports).map((texture, index) => (
         <Box key={`carousel-image-${index}`}>
@@ -65,13 +63,11 @@ const MainCarousel = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              //marginTop: "60px",
               marginLeft: "15%",
               width: "100%",
               maxHeight: "100vh",
               padding: "80px 0px 0px 0px",
               backgroundAttachment: "fixed",
-              //backgroundColor: "#1d1d1f",
               position: "relative",
             }}
           >
@@ -83,10 +79,6 @@ const MainCarousel = () => {
                 maxHeight: "100%",
                 objectFit: "cover",
                 objectPosition: "center",
-                //position: "absolute",
-                //top: "0",
-                //left: "0",
-                // backgroundAttachment: "fixed",
               }}
             />
           </div>
@@ -98,19 +90,18 @@ const MainCarousel = () => {
             textAlign="left"
             backgroundColor="rgb(0, 0, 0, 0.4)"
             position="absolute"
-            top={isNonMobile?"46%": "30%"}
+            top={isNonMobile ? "46%" : "30%"}
             maxHeight="300px"
             left={isNonMobile ? "10%" : "7%"}
-            // right={isNonMobile ? undefined : "10px"}
             margin={isNonMobile ? undefined : "0 auto"}
             maxWidth={isNonMobile ? undefined : "170px"}
-            // maxWidth={isNonTablet ? undefined : "180px"}
           >
             <Typography color={shades.secondary[200]}>-- NEW ITEMS</Typography>
-            {isNonTablet?
-              <Typography variant="h1">Summer Sale</Typography>:
+            {isNonTablet ? (
+              <Typography variant="h1">Summer Sale</Typography>
+            ) : (
               <Typography variant="h2">Summer Sale</Typography>
-              }
+            )}
             <Typography
               fontWeight="bold"
               color={shades.secondary[300]}
@@ -123,7 +114,6 @@ const MainCarousel = () => {
       ))}
     </Carousel>
   );
-}
-
+};
 
 export default MainCarousel;

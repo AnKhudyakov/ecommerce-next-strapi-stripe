@@ -1,13 +1,7 @@
 import Layout from "../../src/components/Layout";
 import { fetcher } from "../../lib/api";
-import {
-  getTokenFromLocalCookie,
-  getTokenFromServerCookie,
-  getUserFromLocalCookie,
-} from "../../lib/auth";
 import { useFetchUser } from "../../lib/authContext";
 import markdownToHtml from "../../lib/markdownToHtml";
-import { useDispatch } from "react-redux";
 import { store } from "../index";
 import ProductCard from "../../src/components/ProductCard";
 import { Provider } from "react-redux";
@@ -15,8 +9,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../lib/theme";
 
 const Id = ({ item, items, error, description }) => {
-  //console.log("item", item);
-  //console.log("description", description);
   const { user, loading } = useFetchUser();
   if (error) {
     return (
@@ -45,7 +37,6 @@ export async function getStaticPaths() {
   const products = await fetcher(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products`
   );
-  console.log(products.data);
   const paths = products.data.map((product) => ({
     params: { id: `${product.id}` },
   }));
@@ -61,7 +52,6 @@ export async function getStaticProps({ params }) {
   const ProductsResponse = await fetcher(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/products?populate=%2A`
   );
-  console.log("ProductsResponse", ProductsResponse);
   if (ProductResponse.data) {
     const description = await markdownToHtml(
       ProductResponse.data.attributes.description

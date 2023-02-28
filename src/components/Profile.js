@@ -54,7 +54,6 @@ const Profile = ({ avatar }) => {
           </button>
         </div>
       )}
-      {/* eslint-disable @next/next/no-img-element */}
       {avatar && (
         <img
           src={`https://res.cloudinary.com/tamas-demo/image/upload/f_auto,q_auto,w_150,h_150,g_face,c_thumb,r_max/${avatar}`}

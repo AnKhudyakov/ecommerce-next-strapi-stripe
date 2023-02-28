@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 const Item = ({ item, width }) => {
-  const router = useRouter();
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
@@ -44,7 +43,6 @@ const Item = ({ item, width }) => {
           <img
             alt={item.name}
             src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`}
-            //onClick={() => handleClick}
             style={{
               cursor: "pointer",
               maxWidth: "300px",

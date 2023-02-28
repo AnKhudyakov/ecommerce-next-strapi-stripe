@@ -26,7 +26,7 @@ const ShoppingList =() => {
 
   useEffect(() => {
     getItems();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); 
 
   const accessories = items.filter(
     (item) => item.attributes.category.data.attributes.Name === "Accessories"

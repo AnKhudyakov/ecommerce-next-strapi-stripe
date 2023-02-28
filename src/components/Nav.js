@@ -18,11 +18,6 @@ const Nav = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
 
-  // const handleClick = () => {
-  //   e.preventDefault();
-  //   router.redirect("/");
-  // };
-
   return (
     <nav
       className="
@@ -57,14 +52,13 @@ const Nav = () => {
           alignItems="center"
         >
           <Link href="/" passHref>
-          <Box
-            //onClick={() => handleClick}
-            sx={{ "&:hover": { cursor: "pointer" } }}
-            color={shades.secondary[500]}
-          >
-
-            ECOMMER
-          </Box>
+            <Box
+              //onClick={() => handleClick}
+              sx={{ "&:hover": { cursor: "pointer" } }}
+              color={shades.secondary[500]}
+            >
+              ECOMMER
+            </Box>
           </Link>
           <Box
             display="flex"

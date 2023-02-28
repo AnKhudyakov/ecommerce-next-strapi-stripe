@@ -29,8 +29,6 @@ const CartMenu = () => {
   }, 0);
 
   const handleClick = () => {
-    console.log("HERE",router);
-
     router.replace("/checkout");
     dispatch(setIsCartOpen({}));
   };
