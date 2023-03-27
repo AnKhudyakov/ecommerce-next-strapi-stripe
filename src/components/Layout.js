@@ -4,6 +4,8 @@ import { UserProvider } from "../../lib/authContext";
 import Footer from "./Footer";
 import CartMenu from "./CartMenu";
 import ProfileMenu from "./ProfileMenu";
+import SearchMenu from "./SearchMenu";
+
 
 const Layout = ({ user, loading = false, children }) => (
   <UserProvider value={{ user, loading }}>
@@ -28,6 +30,7 @@ const Layout = ({ user, loading = false, children }) => (
         <div className="text-2xl font-medium">{children}</div>
       </div>
     </main>
+    <SearchMenu/>
     <CartMenu />
     <ProfileMenu />
     <Footer />

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Badge, Box, IconButton } from "@mui/material";
 import { setIsCartOpen } from "../../state";
-import { setIsProfileOpen } from "../../state/profileSlice";
+import { setIsProfileOpen, setIsSearchOpen } from "../../state/profileSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   HomeOutlined,
@@ -12,6 +12,7 @@ import {
 } from "@mui/icons-material";
 import { shades } from "../../lib/theme";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const Nav = () => {
   const router = useRouter();
@@ -37,7 +38,7 @@ const Nav = () => {
         alignItems="center"
         width="100%"
         height="60px"
-        backgroundColor="rgba(255, 255, 255, 0.95)"
+        backgroundColor="rgba(22, 22, 23, .5)"
         color="black"
         position="fixed"
         top="0"
@@ -53,8 +54,12 @@ const Nav = () => {
         >
           <Link href="/" passHref>
             <Box
-              //onClick={() => handleClick}
-              sx={{ "&:hover": { cursor: "pointer" } }}
+              sx={{
+                "&:hover": {
+                  cursor: "pointer",
+                  color: `${shades.secondary[300]}`,
+                },
+              }}
               color={shades.secondary[500]}
             >
               ECOMMER
@@ -67,17 +72,20 @@ const Nav = () => {
             zIndex="2"
           >
             <Link href="/">
-              <IconButton sx={{ color: "black" }}>
+              <IconButton sx={{ color: "rgba(255, 255, 255, .8)" }}>
                 <HomeOutlined />
               </IconButton>
             </Link>
 
-            <IconButton sx={{ color: "black" }}>
+            <IconButton
+              sx={{ color: "rgba(255, 255, 255, .8)" }}
+              onClick={() => dispatch(setIsSearchOpen({}))}
+            >
               <SearchOutlined />
             </IconButton>
 
             <IconButton
-              sx={{ color: "black" }}
+              sx={{ color: "rgba(255, 255, 255, .8)" }}
               onClick={() => dispatch(setIsProfileOpen({}))}
             >
               <PersonOutline />
@@ -99,12 +107,12 @@ const Nav = () => {
             >
               <IconButton
                 onClick={() => dispatch(setIsCartOpen({}))}
-                sx={{ color: "black" }}
+                sx={{ color: "rgba(255, 255, 255, .8)" }}
               >
                 <ShoppingBagOutlined />
               </IconButton>
             </Badge>
-            <IconButton sx={{ color: "black" }}>
+            <IconButton sx={{ color: "rgba(255, 255, 255, .8)" }}>
               <MenuOutlined />
             </IconButton>
           </Box>

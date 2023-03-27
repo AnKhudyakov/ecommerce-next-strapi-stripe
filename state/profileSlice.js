@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isProfileOpen: false,
+  isSearchOpen: false,
 };
 
 export const profileSlice = createSlice({
@@ -11,9 +12,12 @@ export const profileSlice = createSlice({
     setIsProfileOpen: (state) => {
       state.isProfileOpen = !state.isProfileOpen;
     },
+    setIsSearchOpen: (state) => {
+      state.isSearchOpen = !state.isSearchOpen;
+    },
   },
 });
 
-export const { setIsProfileOpen } = profileSlice.actions;
+export const { setIsProfileOpen, setIsSearchOpen } = profileSlice.actions;
 
 export default profileSlice.reducer;
