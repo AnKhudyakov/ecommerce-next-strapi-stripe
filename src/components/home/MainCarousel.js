@@ -14,7 +14,8 @@ import { shades } from "../../../lib/theme";
 import { useSelector } from "react-redux";
 
 const MainCarousel = () => {
-  const isNonMobile = useMediaQuery("(min-width:800px)");
+  const isMobile = useMediaQuery("(min-width:600px)");
+  const isNonMobile = useMediaQuery("(min-width:850px)");
   const isNonTablet = useMediaQuery("(min-width:1050px)");
   const slider = useSelector((state) => state.cart.slider);
 
@@ -62,7 +63,7 @@ const MainCarousel = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: slide.position,
-              height: "100vh",
+              height: isMobile?isNonMobile?isNonTablet?"100vh":"70vh":"50vh":"40vh",
               maxHeight: "1200px",
               backgroundAttachment: "fixed",
               position: "relative",
@@ -88,17 +89,17 @@ const MainCarousel = () => {
             borderRadius="1px"
             textAlign="left"
             position="absolute"
-            top={isNonMobile ? "15%" : "15%"}
+            top={isNonMobile ? "15%" : "25%"}
             maxHeight="300px"
-            left={isNonMobile ? "10%" : "10%"}
+            left={isNonMobile ? "10%" : "5%"}
             margin={isNonMobile ? undefined : "0 auto"}
             maxWidth={isNonMobile ? undefined : "170px"}
           >
-            <Typography color={shades.secondary[200]}>
+            <Typography color={shades.secondary[200]} variant={isNonMobile? isNonTablet ? "h3" : "h4":"h5"}>
               -- NEW ITEMS
             </Typography>
 
-            <Typography variant={isNonTablet ? "h1" : "h2"}>
+            <Typography variant={isNonMobile? isNonTablet ? "h1" : "h2":"h4"}>
               Summer Sale
             </Typography>
             <Link href="#list">
