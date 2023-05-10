@@ -64,7 +64,7 @@ const Item = ({ item, width }) => {
             <Box
               display="flex"
               alignItems="center"
-              backgroundColor={shades.neutral[100]}
+              backgroundColor={shades.neutral[200]}
               borderRadius="3px"
             >
               <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
@@ -79,7 +79,6 @@ const Item = ({ item, width }) => {
               onClick={() => {
                 dispatch(addToCart({ item: { ...item, count } }));
               }}
-              sx={{ backgroundColor: shades.primary[100], color: "black" }}
             >
               Add to Cart
             </Button>
@@ -99,6 +98,6 @@ const Item = ({ item, width }) => {
       </Box>
     </Box>
   );
-}
+};
 
 export default Item;

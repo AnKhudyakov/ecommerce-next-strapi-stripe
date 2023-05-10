@@ -6,16 +6,17 @@ import Item from "../Item";
 import { Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
-import { setItems } from "../../../state";
+import { setItems,setValue } from "../../../state";
 import { fetcher } from "../../../lib/api";
 
 const ShoppingList =() => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState("all");
   const items = useSelector((state) => state.cart.items);
+  const value = useSelector((state) => state.cart.value);
+
   const breakPoint = useMediaQuery("(min-width:600px)");
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    dispatch(setValue(newValue));
   };
   async function getItems() {
     const items = await fetcher(
@@ -39,7 +40,7 @@ const ShoppingList =() => {
   );
 
   return (
-    <Box width="80%" margin="80px auto">
+    <Box width="80%" margin="80px auto" id="list">
       <Typography variant="h3" textAlign="center">
         Our Featured <b>Products</b>
       </Typography>

@@ -49,6 +49,7 @@ const CartMenu = () => {
     >
       <Box
         position="fixed"
+        top="60px"
         right="0"
         bottom="0"
         width={isNonMobile?"max(400px, 30%)":"max(350px, 30%)"}
@@ -132,8 +133,6 @@ const CartMenu = () => {
             </FlexBox>
             <Button
               sx={{
-                backgroundColor: shades.primary[400],
-                color: "white",
                 borderRadius: 0,
                 minWidth: "100%",
                 padding: "20px 40px",

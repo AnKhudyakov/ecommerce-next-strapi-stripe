@@ -64,18 +64,9 @@ const ProductCard = ({ item, items, description }) => {
     }
   }, []);
   return (
-    <Box width="100%" m="60px auto">
-      {url && (
+     <Box width="100%" m="60px auto">
+      {/* {url && (
         <Box width="100%" backgroundColor="black">
-          <video
-            width="100%"
-            className="video"
-            autoPlay={true}
-            muted={true}
-            playsInline={true}
-            aria-hidden={true}
-            src={url}
-          ></video>
           <video
             ref={ref}
             width="100%"
@@ -87,7 +78,7 @@ const ProductCard = ({ item, items, description }) => {
             src={urlSecond}
           ></video>
         </Box>
-      )}
+      )} */}
       <Box width="80%" m="0px auto">
         <Box display="flex" flexWrap="wrap" columnGap="40px">
           {/* IMAGES */}
@@ -139,8 +130,6 @@ const ProductCard = ({ item, items, description }) => {
               </Box>
               <Button
                 sx={{
-                  backgroundColor: shades.primary[100],
-                  color: "black",
                   borderRadius: 0,
                   minWidth: "150px",
                   padding: "10px 40px",

@@ -28,7 +28,6 @@ const ProfileMenu = () => {
   const isProfileOpen = useSelector((state) => state.profile.isProfileOpen);
 
   const handleClick = () => {
-    //router.redirect("/checkout");
     dispatch(setIsProfileOpen({}));
   };
 
@@ -53,11 +52,12 @@ const ProfileMenu = () => {
     >
       <Box
         position="fixed"
+        top="60px"
         right="0"
         bottom="0"
         width={isNonMobile ? "max(400px, 30%)" : "max(350px, 30%)"}
         height="100%"
-        backgroundColor="white"
+        backgroundColor="rgba(255, 255, 255, 1)"
       >
         <Box padding="30px" overflow="auto" height="100%">
           {/* HEADER */}
@@ -82,8 +82,6 @@ const ProfileMenu = () => {
                 <Profile />
                 <Button
                   sx={{
-                    backgroundColor: shades.primary[400],
-                    color: "white",
                     borderRadius: 0,
                     minWidth: "100%",
                     padding: "20px 40px",

@@ -98,8 +98,6 @@ const Register = () => {
           <div>
             <Button
               sx={{
-                backgroundColor: shades.primary[400],
-                color: "white",
                 borderRadius: 0,
                 minWidth: "100px",
                 padding: "20px 40px",

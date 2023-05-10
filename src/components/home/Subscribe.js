@@ -5,7 +5,7 @@ import { useState } from "react";
 const Subscribe = () => {
   const [email, setEmail] = useState("");
   return (
-    <Box width="80%" margin="80px auto" textAlign="center">
+    <Box width="80%" margin="80px auto" textAlign="center" maxWidth="600px">
       <IconButton>
         <MarkEmailReadOutlinedIcon fontSize="large" />
       </IconButton>

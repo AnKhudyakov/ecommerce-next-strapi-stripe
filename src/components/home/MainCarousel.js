@@ -1,24 +1,23 @@
-import { Box, Typography, IconButton, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Typography,
+  IconButton,
+  useMediaQuery,
+  CardMedia,
+  Link,
+} from "@mui/material";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { shades } from "../../../lib/theme";
-
-// imports all images from assets folder
-const importAll = (r) =>
-  r.keys().reduce((acc, item) => {
-    acc[item.replace("./", "")] = r(item);
-    return acc;
-  }, {});
-
-export const heroTextureImports = importAll(
-  require.context("../../assets", false, /\.(png|jpe?g|svg)$/)
-);
+import { useSelector } from "react-redux";
 
 const MainCarousel = () => {
   const isNonMobile = useMediaQuery("(min-width:800px)");
   const isNonTablet = useMediaQuery("(min-width:1050px)");
+  const slider = useSelector((state) => state.cart.slider);
+
   return (
     <Carousel
       infiniteLoop={true}
@@ -56,52 +55,53 @@ const MainCarousel = () => {
         </IconButton>
       )}
     >
-      {Object.values(heroTextureImports).map((texture, index) => (
-        <Box key={`carousel-image-${index}`}>
-          <div
+      {slider.map((slide, index) => (
+        <Box key={`carousel-video-${index}`}>
+          <Box
             style={{
               display: "flex",
               justifyContent: "center",
-              alignItems: "center",
-              marginLeft: "15%",
-              width: "100%",
-              maxHeight: "100vh",
-              padding: "80px 0px 0px 0px",
+              alignItems: slide.position,
+              height: "100vh",
+              maxHeight: "1200px",
               backgroundAttachment: "fixed",
               position: "relative",
+              background: "black",
+              paddingTop: "60px",
             }}
           >
-            <img
-              src={texture.default.src}
-              alt={`carousel-${index}`}
-              style={{
-                maxWidth: "60%",
-                maxHeight: "100%",
-                objectFit: "cover",
-                objectPosition: "center",
+            <CardMedia
+              sx={{
+                display: "block",
+                objectPosition: slide.positionX,
               }}
+              component="video"
+              src={slide.url}
+              autoPlay={true}
+              muted={true}
+              max-width="100%"
             />
-          </div>
+          </Box>
 
           <Box
             color="white"
-            padding="20px"
             borderRadius="1px"
             textAlign="left"
-            backgroundColor="rgb(0, 0, 0, 0.4)"
             position="absolute"
-            top={isNonMobile ? "46%" : "30%"}
+            top={isNonMobile ? "15%" : "15%"}
             maxHeight="300px"
-            left={isNonMobile ? "10%" : "7%"}
+            left={isNonMobile ? "10%" : "10%"}
             margin={isNonMobile ? undefined : "0 auto"}
             maxWidth={isNonMobile ? undefined : "170px"}
           >
-            <Typography color={shades.secondary[200]}>-- NEW ITEMS</Typography>
-            {isNonTablet ? (
-              <Typography variant="h1">Summer Sale</Typography>
-            ) : (
-              <Typography variant="h2">Summer Sale</Typography>
-            )}
+            <Typography color={shades.secondary[200]}>
+              -- NEW ITEMS
+            </Typography>
+
+            <Typography variant={isNonTablet ? "h1" : "h2"}>
+              Summer Sale
+            </Typography>
+            <Link href="#list">
             <Typography
               fontWeight="bold"
               color={shades.secondary[300]}
@@ -109,6 +109,7 @@ const MainCarousel = () => {
             >
               Discover More
             </Typography>
+            </Link>
           </Box>
         </Box>
       ))}

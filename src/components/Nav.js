@@ -1,7 +1,11 @@
 import Link from "next/link";
-import { Badge, Box, IconButton } from "@mui/material";
+import { Badge, Box, IconButton, useMediaQuery } from "@mui/material";
 import { setIsCartOpen } from "../../state";
-import { setIsProfileOpen, setIsSearchOpen } from "../../state/profileSlice";
+import {
+  setIsProfileOpen,
+  setIsSearchOpen,
+  setAnchorEl,
+} from "../../state/profileSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   HomeOutlined,
@@ -18,6 +22,14 @@ const Nav = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
+
+  const [value, setValue] = useState("recents");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const isNonTablet = useMediaQuery("(min-width:700px)");
 
   return (
     <nav
@@ -38,16 +50,17 @@ const Nav = () => {
         alignItems="center"
         width="100%"
         height="60px"
-        backgroundColor="rgba(22, 22, 23, .5)"
+        backgroundColor="rgba(22, 22, 23, .7)"
         color="black"
         position="fixed"
         top="0"
         left="0"
         zIndex="1"
+        justifyContent='space-between'
       >
         <Box
-          width="80%"
-          margin="auto"
+          width={isNonTablet?"80%":"100%"}
+          margin={isNonTablet?"auto":"5%"}
           display="flex"
           justifyContent="space-between"
           alignItems="center"
@@ -68,7 +81,7 @@ const Nav = () => {
           <Box
             display="flex"
             justifyContent="space-between"
-            columnGap="20px"
+            columnGap={isNonTablet ? "60px" : "15px"}
             zIndex="2"
           >
             <Link href="/">
@@ -112,10 +125,96 @@ const Nav = () => {
                 <ShoppingBagOutlined />
               </IconButton>
             </Badge>
-            <IconButton sx={{ color: "rgba(255, 255, 255, .8)" }}>
+            <IconButton
+              onClick={(e) => {
+                dispatch(setAnchorEl(e.currentTarget));
+              }}
+              onMouseOver={(e) => {
+                dispatch(setAnchorEl(e.currentTarget));
+              }}
+              sx={{ color: "rgba(255, 255, 255, .8)" }}
+            >
               <MenuOutlined />
             </IconButton>
           </Box>
+          {/* <BottomNavigation
+            sx={{ width: 500, backgroundColor: "transparent", color: "white" }}
+            value={value}
+            onChange={handleChange}
+          >
+            
+            <BottomNavigationAction
+              sx={{
+                "& .MuiBottomNavigationAction-label": {
+                  color: "rgba(255, 255, 255, .8)",
+                },
+              }}
+              label="Home"
+              value="home"
+              icon={<HomeOutlined sx={{ color: "rgba(255, 255, 255, .8)" }} />}
+              onClick={()=>router.replace("/")}
+            />
+            <BottomNavigationAction
+              sx={{
+                "& .MuiBottomNavigationAction-label": {
+                  color: "rgba(255, 255, 255, .8)",
+                },
+              }}
+              label="Search"
+              value="search"
+              icon={
+                <SearchOutlined sx={{ color: "rgba(255, 255, 255, .8)" }} />
+              }
+              onClick={() => dispatch(setIsSearchOpen({}))}
+            />
+            <BottomNavigationAction
+              sx={{
+                "& .MuiBottomNavigationAction-label": {
+                  color: "rgba(255, 255, 255, .8)",
+                },
+              }}
+              label="Profile"
+              value="profile"
+              icon={<PersonOutline sx={{ color: "rgba(255, 255, 255, .8)" }} />}
+              onClick={() => dispatch(setIsProfileOpen({}))}
+            />
+            <BottomNavigationAction
+              sx={{
+                "& .MuiBottomNavigationAction-label": {
+                  color: "rgba(255, 255, 255, .8)",
+                },
+              }}
+              label="Cart"
+              value="cart"
+              icon={
+                <ShoppingBagOutlined
+                  sx={{ color: "rgba(255, 255, 255, .8)" }}
+                />
+              }
+              onClick={() => dispatch(setIsCartOpen({}))}
+            />
+            <BottomNavigationAction
+              sx={{
+                "& .MuiBottomNavigationAction-label": {
+                  color: "rgba(255, 255, 255, .8)",
+                },
+              }}
+              label="Menu"
+              value="menu"
+              icon={
+                <MenuOutlined
+                  sx={{ color: "rgba(255, 255, 255, .8)" }}
+                />
+              }
+              onClick={(e) => {
+                dispatch(setAnchorEl(e.currentTarget));
+              }}
+              onMouseOver={(e) => {
+                dispatch(setAnchorEl(e.currentTarget));
+              }}
+            />
+          </BottomNavigation>
+           */}
         </Box>
       </Box>
     </nav>

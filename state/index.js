@@ -2,9 +2,27 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isCartOpen: false,
+  value: "all",
   cart: [],
   item: "",
   items: [],
+  slider: [
+    {
+      url: "https://www.apple.com/105/media/us/macbook-air-m1/2022/648bb92f-0bb4-452c-bfbc-2898641b22f5/anim/hero/medium_2x.mp4",
+      position: "center",
+      positionX: "10vw 0",
+    },
+    {
+      url: "https://www.apple.com/105/media/us/macbook-pro-14-and-16/2022/1baf5961-c793-48e7-9efd-0d23cac1e101/anim/hero/large_2x.mp4",
+      position: "flex-start",
+      positionX: "0",
+    },
+    {
+      url: "https://www.apple.com/105/media/us/iphone-14-pro/2022/a3e991f3-071e-454c-b714-1b2319bb97a8/anim/camera-intro/large_2x.mp4",
+      position: "flex-start",
+      positionX: "0",
+    },
+  ],
 };
 
 export const cartSlice = createSlice({
@@ -47,6 +65,10 @@ export const cartSlice = createSlice({
     setIsCartOpen: (state) => {
       state.isCartOpen = !state.isCartOpen;
     },
+
+    setValue: (state, action) => {
+      state.value = action.payload;
+    },
   },
 });
 
@@ -58,6 +80,7 @@ export const {
   increaseCount,
   decreaseCount,
   setIsCartOpen,
+  setValue
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

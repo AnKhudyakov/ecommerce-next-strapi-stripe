@@ -1,9 +1,10 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import InputBase from "@mui/material/InputBase";
+import { Box, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { setValue } from "../../state";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -15,8 +16,8 @@ const Search = styled("div")(({ theme }) => ({
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    marginRight: theme.spacing(1),
-    marginLeft: theme.spacing(1),
+    marginRight: "2px",
+    marginLeft: "2px",
     width: "auto",
   },
 }));
@@ -36,34 +37,45 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "rgba(255, 255, 255, .8)",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "12ch",
+      width: "25vw",
+      maxWidth: "400px",
       "&:focus": {
-        width: "20ch",
+        width: "30vw",
+        maxWidth: "400px",
       },
     },
   },
 }));
 
 const SearchMenu = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const isSearchOpen = useSelector((state) => state.profile.isSearchOpen);
+  const handleSearch = (e) => {
+    if (e.keyCode === 13) {
+      router.replace("/#list");
+      dispatch(setValue("all"));
+    }
+  };
+
   return (
     <Box
       display={isSearchOpen ? "block" : "none"}
-      backgroundColor="rgba(22, 22, 23, .5)"
+      backgroundColor="rgba(22, 22, 23, .6)"
       position="fixed"
       zIndex={10}
-      width="30%"
-      height="40px"
+      width="45%"
+      maxWidth="470px"
+      height="36px"
       right="0"
       top="60px"
-      borderRadius=" 0px 0 0 4px"
+      borderRadius=" 0px 0 0 5px"
     >
-      <Search>
+      <Search onKeyDown={handleSearch}>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>

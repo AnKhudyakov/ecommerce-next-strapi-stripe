@@ -108,12 +108,9 @@ const CheckoutForm = () => {
                 {!isFirstStep && (
                   <Button
                     fullWidth
-                    color="primary"
                     variant="contained"
                     sx={{
-                      backgroundColor: shades.primary[200],
                       boxShadow: "none",
-                      color: "white",
                       borderRadius: 0,
                       padding: "15px 40px",
                     }}
@@ -125,12 +122,9 @@ const CheckoutForm = () => {
                 <Button
                   fullWidth
                   type="submit"
-                  color="primary"
                   variant="contained"
                   sx={{
-                    backgroundColor: shades.primary[400],
                     boxShadow: "none",
-                    color: "white",
                     borderRadius: 0,
                     padding: "15px 40px",
                   }}

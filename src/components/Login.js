@@ -10,7 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { Button, IconButton } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 import { shades } from "../../lib/theme";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -18,6 +18,7 @@ import { setIsProfileOpen } from "../../state/profileSlice";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -53,8 +54,12 @@ function Login() {
           password: data.password,
         }),
       }
-    );
-    setToken(responseData);
+    )
+    if (responseData.data){
+      setToken(responseData);
+    } else {
+      setError("Your login or password incorrect")
+    }
   };
 
   return (
@@ -100,10 +105,9 @@ function Login() {
               label="Password"
             />
           </FormControl>
+          {error && <Typography color={shades.secondary[400]} sx={{ml:"10px"}}>{error}</Typography>}
           <Button
             sx={{
-              backgroundColor: shades.primary[400],
-              color: "white",
               borderRadius: 0,
               minWidth: "100%",
               padding: "20px 40px",

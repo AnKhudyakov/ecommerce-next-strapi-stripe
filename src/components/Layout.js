@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import CartMenu from "./CartMenu";
 import ProfileMenu from "./ProfileMenu";
 import SearchMenu from "./SearchMenu";
-
+import NavMenu from "./NavMenu";
 
 const Layout = ({ user, loading = false, children }) => (
   <UserProvider value={{ user, loading }}>
@@ -13,7 +13,7 @@ const Layout = ({ user, loading = false, children }) => (
       <title>Online Store</title>
     </Head>
     <Nav />
-    <main className="px-4">
+    <main className="px-4 scrollBehavior-smooth ">
       <div
         className="
           flex
@@ -25,14 +25,18 @@ const Layout = ({ user, loading = false, children }) => (
           rounded-lg
           my-16
           p-16
+          scroll
         "
       >
-        <div className="text-2xl font-medium">{children}</div>
+        <div className="text-2xl font-medium scrollBehavior-smooth">
+          {children}
+        </div>
       </div>
     </main>
-    <SearchMenu/>
+    <SearchMenu />
     <CartMenu />
     <ProfileMenu />
+    <NavMenu />
     <Footer />
   </UserProvider>
 );

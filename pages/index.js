@@ -13,6 +13,10 @@ export const store = configureStore({
     cart: cartReducer,
     profile: profileReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default function Home() {
@@ -21,7 +25,7 @@ export default function Home() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Layout user={user}>
-          <HomePage/>
+          <HomePage />
         </Layout>
       </ThemeProvider>
     </Provider>
