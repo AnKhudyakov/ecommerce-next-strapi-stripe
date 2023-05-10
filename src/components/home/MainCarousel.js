@@ -70,7 +70,7 @@ const MainCarousel = () => {
               background: "black",
               paddingTop: "60px",
             }}
-          >
+          > 
             <CardMedia
               sx={{
                 display: "block",
