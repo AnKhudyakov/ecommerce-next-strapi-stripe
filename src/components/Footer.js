@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { shades } from "../../lib/theme";
 import Image from "next/image";
 import local from "../assets/local.svg";
@@ -10,6 +10,7 @@ const Footer = () => {
   const {
     palette: { neutral },
   } = useTheme();
+  const isNonMobile = useMediaQuery("(min-width:500px)");
 
   return (
     <Box marginTop="70px" padding="40px 0" backgroundColor={neutral.light}>
@@ -59,7 +60,7 @@ const Footer = () => {
           <Typography mb="30px">Returns & Refunds</Typography>
         </Box>
 
-        <Box width="clamp(20%, 25%, 30%)">
+        <Box width={isNonMobile ? "clamp(20%, 25%, 30%)" : "100%"}>
           <Typography variant="h4" fontWeight="bold" mb="30px">
             Contact Us
           </Typography>
