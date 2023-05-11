@@ -10,6 +10,9 @@ import NavMenu from "./NavMenu";
 const Layout = ({ user, loading = false, children }) => (
   <UserProvider value={{ user, loading }}>
     <Head>
+      <meta charset="UTF-8" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>Online Store</title>
     </Head>
     <Nav />

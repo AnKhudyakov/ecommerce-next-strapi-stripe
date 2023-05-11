@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { setToken } from "../../lib/auth";
 import { fetcher } from "../../lib/api";
 import { Button } from "@mui/material";
-import { shades } from "../../lib/theme";
 
 const Register = () => {
   const router = useRouter();
@@ -41,6 +40,7 @@ const Register = () => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
+
   return (
     <div
       className="flex w-full"

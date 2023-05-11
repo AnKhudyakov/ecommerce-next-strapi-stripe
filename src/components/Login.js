@@ -1,16 +1,20 @@
 import * as React from "react";
 import { useState } from "react";
 import { fetcher } from "../../lib/api";
-import { setToken, unsetToken } from "../../lib/auth";
+import { setToken } from "../../lib/auth";
 import { useUser } from "../../lib/authContext";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
+import {
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  Button,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { Button, IconButton, Typography } from "@mui/material";
 import { shades } from "../../lib/theme";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -21,19 +25,14 @@ function Login() {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
   const { user, loading } = useUser();
   const [data, setData] = useState({
     identifier: "",
     password: "",
   });
 
-  const logout = () => {
-    unsetToken();
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   const handleChange = (e) => {
@@ -54,11 +53,11 @@ function Login() {
           password: data.password,
         }),
       }
-    )
-    if (responseData.data){
+    );
+    if (responseData.jwt) {
       setToken(responseData);
     } else {
-      setError("Your login or password incorrect")
+      setError("Your login or password incorrect");
     }
   };
 
@@ -105,7 +104,11 @@ function Login() {
               label="Password"
             />
           </FormControl>
-          {error && <Typography color={shades.secondary[400]} sx={{ml:"10px"}}>{error}</Typography>}
+          {error && (
+            <Typography color={shades.secondary[400]} sx={{ ml: "10px" }}>
+              {error}
+            </Typography>
+          )}
           <Button
             sx={{
               borderRadius: 0,

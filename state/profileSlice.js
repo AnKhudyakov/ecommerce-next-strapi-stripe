@@ -4,7 +4,7 @@ const initialState = {
   isProfileOpen: false,
   isSearchOpen: false,
   isMenuOpen: false,
-  anchorEl: null
+  anchorEl: null,
 };
 
 export const profileSlice = createSlice({

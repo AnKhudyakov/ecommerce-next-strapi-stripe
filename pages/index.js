@@ -6,12 +6,14 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "../state";
 import profileReducer from "../state/profileSlice";
+import checkoutReducer from "../state/checkoutSlice";
 import HomePage from "../src/components/home/Home";
 
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
     profile: profileReducer,
+    checkout: checkoutReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

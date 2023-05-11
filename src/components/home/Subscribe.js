@@ -1,6 +1,7 @@
 import { Box, InputBase, Divider, Typography, IconButton } from "@mui/material";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 import { useState } from "react";
+import { shades } from "../../../lib/theme";
 
 const Subscribe = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ const Subscribe = () => {
         display="flex"
         alignItems="center"
         width="75%"
-        backgroundColor="#F2F2F2"
+        backgroundColor={shades.neutral[300]}
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}

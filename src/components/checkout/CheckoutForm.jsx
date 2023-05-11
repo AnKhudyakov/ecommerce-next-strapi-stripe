@@ -3,7 +3,6 @@ import { Box, Button, Stepper, Step, StepLabel } from "@mui/material";
 import { Formik } from "formik";
 import { useState } from "react";
 import * as yup from "yup";
-import { shades } from "../../../lib/theme";
 import Payment from "./Payment";
 import Shipping from "./Shipping";
 import { loadStripe } from "@stripe/stripe-js";
@@ -16,9 +15,9 @@ const stripePromise = loadStripe(
 const CheckoutForm = () => {
   const [activeStep, setActiveStep] = useState(0);
   const cart = useSelector((state) => state.cart.cart);
+  const initialValues = useSelector((state) => state.checkout.initialValues);
   const isFirstStep = activeStep === 0;
   const isSecondStep = activeStep === 1;
-
   const handleFormSubmit = async (values, actions) => {
     setActiveStep(activeStep + 1);
 
@@ -47,13 +46,15 @@ const CheckoutForm = () => {
         count,
       })),
     };
-    
+
     const session = await fetcher(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/orders`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(requestBody),
-    });
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/orders`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      }
+    );
     await stripe.redirectToCheckout({
       sessionId: session.id,
     });
@@ -138,32 +139,6 @@ const CheckoutForm = () => {
       </Box>
     </Box>
   );
-};
-
-const initialValues = {
-  billingAddress: {
-    firstName: "",
-    lastName: "",
-    country: "",
-    street1: "",
-    street2: "",
-    city: "",
-    state: "",
-    zipCode: "",
-  },
-  shippingAddress: {
-    isSameAddress: true,
-    firstName: "",
-    lastName: "",
-    country: "",
-    street1: "",
-    street2: "",
-    city: "",
-    state: "",
-    zipCode: "",
-  },
-  email: "",
-  phoneNumber: "",
 };
 
 const checkoutSchema = [

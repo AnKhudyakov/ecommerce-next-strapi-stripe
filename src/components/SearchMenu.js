@@ -55,6 +55,7 @@ const SearchMenu = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const isSearchOpen = useSelector((state) => state.profile.isSearchOpen);
+
   const handleSearch = (e) => {
     if (e.keyCode === 13) {
       router.replace("/#list");

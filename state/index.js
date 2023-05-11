@@ -80,7 +80,7 @@ export const {
   increaseCount,
   decreaseCount,
   setIsCartOpen,
-  setValue
+  setValue,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

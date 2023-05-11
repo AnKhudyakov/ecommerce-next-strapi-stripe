@@ -1,41 +1,38 @@
-import {
-  Box,
-  Menu,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { Box, Menu, MenuItem, Typography, useMediaQuery } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setAnchorEl } from "../../state/profileSlice";
 import { setValue } from "../../state";
-import macbook from "../assets/macbook.png";
-import iphone from "../assets/iphone.png";
-import acc from "../assets/acc.png";
+import macbook from "../assets/macbook.svg";
+import iphone from "../assets/iphone.svg";
+import acc from "../assets/acc.svg";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 const NavMenu = () => {
   const router = useRouter();
   const anchorEl = useSelector((state) => state.profile.anchorEl);
   const open = Boolean(anchorEl);
   const dispatch = useDispatch();
+  const isNonTablet = useMediaQuery("(min-width:950px)");
+  const isNonMobile = useMediaQuery("(min-width:700px)");
+
   const handleClickMac = () => {
     dispatch(setAnchorEl(null));
     router.replace("/#list");
     dispatch(setValue("Mac"));
   };
+
   const handleClickIphone = () => {
     dispatch(setAnchorEl(null));
     router.replace("/#list");
     dispatch(setValue("Iphone"));
   };
+
   const handleClickAcc = () => {
     dispatch(setAnchorEl(null));
     router.replace("/#list");
     dispatch(setValue("Accessories"));
   };
-  const isNonTablet = useMediaQuery("(min-width:950px)");
-  const isNonMobile = useMediaQuery("(min-width:700px)");
 
   return (
     <Menu
@@ -47,7 +44,7 @@ const NavMenu = () => {
           maxWidth: "100%",
           height: "100%",
           display: "flex",
-          gap: isNonMobile?"30px":"5px",
+          gap: isNonMobile ? "30px" : "5px",
           justifyContent: "space-around",
         },
       }}
@@ -56,13 +53,13 @@ const NavMenu = () => {
       onClose={() => dispatch(setAnchorEl(null))}
       sx={{
         top: "0px",
-        left: isNonMobile?"-8%":"-2%",
+        left: isNonMobile ? "-8%" : "-2%",
         "& .MuiMenuItem-root": { display: "block", height: "100%" },
       }}
       PaperProps={{
         elevation: 0,
         sx: {
-          padding: isNonMobile?"10px":"5px",
+          padding: isNonMobile ? "10px" : "5px",
           overflow: "visible",
           filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
           mt: 1.5,
@@ -90,20 +87,35 @@ const NavMenu = () => {
           width: "100%",
         }}
       >
-        <Box position="relative" width={isNonMobile?100:60} height={isNonMobile?100:60} mb={1}>
+        <Box
+          position="relative"
+          width={isNonMobile ? 100 : 60}
+          height={isNonMobile ? 100 : 60}
+          mb={1}
+        >
           <Image src={macbook} alt="macbook" fill sizes="" />
         </Box>
         <Typography textAlign="center">Macbook</Typography>
       </MenuItem>
       <MenuItem orientation="vertical" onClick={handleClickIphone}>
-        <Box position="relative" width={isNonMobile?100:60} height={isNonMobile?100:60} mb={1}>
-          <Image src={iphone} alt="macbook" fill sizes=""/>
+        <Box
+          position="relative"
+          width={isNonMobile ? 100 : 60}
+          height={isNonMobile ? 100 : 60}
+          mb={1}
+        >
+          <Image src={iphone} alt="macbook" fill sizes="" />
         </Box>
         <Typography textAlign="center">iPhone</Typography>
       </MenuItem>
       <MenuItem orientation="vertical" onClick={handleClickAcc}>
-        <Box position="relative" width={isNonMobile?100:60} height={isNonMobile?100:60} mb={1}>
-          <Image src={acc} alt="macbook" fill sizes=""/>
+        <Box
+          position="relative"
+          width={isNonMobile ? 100 : 80}
+          height={isNonMobile ? 100 : 60}
+          mb={1}
+        >
+          <Image src={acc} alt="macbook" fill sizes="" />
         </Box>
         <Typography textAlign="center">Accessories</Typography>
       </MenuItem>

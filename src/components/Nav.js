@@ -15,21 +15,12 @@ import {
   SearchOutlined,
 } from "@mui/icons-material";
 import { shades } from "../../lib/theme";
-import { useRouter } from "next/router";
-import { useState } from "react";
 
 const Nav = () => {
-  const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
-
-  const [value, setValue] = useState("recents");
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   const isNonTablet = useMediaQuery("(min-width:700px)");
+  const isHovered = useMediaQuery("(hover:hover)");
 
   return (
     <nav
@@ -56,11 +47,11 @@ const Nav = () => {
         top="0"
         left="0"
         zIndex="1"
-        justifyContent='space-between'
+        justifyContent="space-between"
       >
         <Box
-          width={isNonTablet?"80%":"100%"}
-          margin={isNonTablet?"auto":"5%"}
+          width={isNonTablet ? "80%" : "100%"}
+          margin={isNonTablet ? "auto" : "5%"}
           display="flex"
           justifyContent="space-between"
           alignItems="center"
@@ -130,91 +121,13 @@ const Nav = () => {
                 dispatch(setAnchorEl(e.currentTarget));
               }}
               onMouseOver={(e) => {
-                dispatch(setAnchorEl(e.currentTarget));
+                isHovered ? dispatch(setAnchorEl(e.currentTarget)) : null;
               }}
               sx={{ color: "rgba(255, 255, 255, .8)" }}
             >
               <MenuOutlined />
             </IconButton>
           </Box>
-          {/* <BottomNavigation
-            sx={{ width: 500, backgroundColor: "transparent", color: "white" }}
-            value={value}
-            onChange={handleChange}
-          >
-            
-            <BottomNavigationAction
-              sx={{
-                "& .MuiBottomNavigationAction-label": {
-                  color: "rgba(255, 255, 255, .8)",
-                },
-              }}
-              label="Home"
-              value="home"
-              icon={<HomeOutlined sx={{ color: "rgba(255, 255, 255, .8)" }} />}
-              onClick={()=>router.replace("/")}
-            />
-            <BottomNavigationAction
-              sx={{
-                "& .MuiBottomNavigationAction-label": {
-                  color: "rgba(255, 255, 255, .8)",
-                },
-              }}
-              label="Search"
-              value="search"
-              icon={
-                <SearchOutlined sx={{ color: "rgba(255, 255, 255, .8)" }} />
-              }
-              onClick={() => dispatch(setIsSearchOpen({}))}
-            />
-            <BottomNavigationAction
-              sx={{
-                "& .MuiBottomNavigationAction-label": {
-                  color: "rgba(255, 255, 255, .8)",
-                },
-              }}
-              label="Profile"
-              value="profile"
-              icon={<PersonOutline sx={{ color: "rgba(255, 255, 255, .8)" }} />}
-              onClick={() => dispatch(setIsProfileOpen({}))}
-            />
-            <BottomNavigationAction
-              sx={{
-                "& .MuiBottomNavigationAction-label": {
-                  color: "rgba(255, 255, 255, .8)",
-                },
-              }}
-              label="Cart"
-              value="cart"
-              icon={
-                <ShoppingBagOutlined
-                  sx={{ color: "rgba(255, 255, 255, .8)" }}
-                />
-              }
-              onClick={() => dispatch(setIsCartOpen({}))}
-            />
-            <BottomNavigationAction
-              sx={{
-                "& .MuiBottomNavigationAction-label": {
-                  color: "rgba(255, 255, 255, .8)",
-                },
-              }}
-              label="Menu"
-              value="menu"
-              icon={
-                <MenuOutlined
-                  sx={{ color: "rgba(255, 255, 255, .8)" }}
-                />
-              }
-              onClick={(e) => {
-                dispatch(setAnchorEl(e.currentTarget));
-              }}
-              onMouseOver={(e) => {
-                dispatch(setAnchorEl(e.currentTarget));
-              }}
-            />
-          </BottomNavigation>
-           */}
         </Box>
       </Box>
     </nav>

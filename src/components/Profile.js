@@ -15,6 +15,7 @@ const Profile = ({ avatar }) => {
       setImage(tmpImage);
     }
   };
+
   const uploadToServer = async () => {
     const formData = new FormData();
     const file = image;
@@ -32,6 +33,7 @@ const Profile = ({ avatar }) => {
       console.error(JSON.stringify(error));
     }
   };
+
   return (
     <>
       <h1 className="text-5xl font-bold">

@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { IconButton, Box, Typography, useTheme, Button } from "@mui/material";
+import {
+  IconButton,
+  Box,
+  Typography,
+  useTheme,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../../lib/theme";
 import { addToCart } from "../../state";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 const Item = ({ item, width }) => {
@@ -15,6 +21,7 @@ const Item = ({ item, width }) => {
   const {
     palette: { neutral },
   } = useTheme();
+  const isNonTablet = useMediaQuery("(min-width:760px)");
 
   const { category, price, name, image } = item.attributes;
   const {
@@ -33,8 +40,8 @@ const Item = ({ item, width }) => {
         position="relative"
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
-        width="300px"
-        height="400px"
+        width={isNonTablet ? "300px" : "250px"}
+        height={isNonTablet ? "350px" : "250px"}
         display="flex"
         alignItems="center"
       >
@@ -45,8 +52,8 @@ const Item = ({ item, width }) => {
             src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`}
             style={{
               cursor: "pointer",
-              maxWidth: "300px",
-              maxHeight: "400px",
+              maxWidth: isNonTablet ? "300px" : "250px",
+              maxHeight: isNonTablet ? "300px" : "200px",
               objectFit: "cover",
               objectPosition: "center",
             }}

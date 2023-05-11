@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
+import React, { useEffect } from "react";
+import { Tabs, useMediaQuery, Tab, Box, Typography } from "@mui/material";
 import Item from "../Item";
-import { Typography } from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
-import { setItems,setValue } from "../../../state";
+import { setItems, setValue } from "../../../state";
 import { fetcher } from "../../../lib/api";
 
-const ShoppingList =() => {
+const ShoppingList = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   const value = useSelector((state) => state.cart.value);
-
+  const isNonTablet = useMediaQuery("(min-width:760px)");
   const breakPoint = useMediaQuery("(min-width:600px)");
   const handleChange = (event, newValue) => {
     dispatch(setValue(newValue));
@@ -27,7 +23,7 @@ const ShoppingList =() => {
 
   useEffect(() => {
     getItems();
-  }, []); 
+  }, []);
 
   const accessories = items.filter(
     (item) => item.attributes.category.data.attributes.Name === "Accessories"
@@ -52,7 +48,7 @@ const ShoppingList =() => {
         centered
         TabIndicatorProps={{ sx: { display: breakPoint ? "block" : "none" } }}
         sx={{
-          m: "25px",
+          m: isNonTablet ? "25px" : "5px",
           "& .MuiTabs-flexContainer": {
             flexWrap: "wrap",
           },
@@ -66,8 +62,12 @@ const ShoppingList =() => {
       <Box
         margin="0 auto"
         display="grid"
-        gridTemplateColumns="repeat(auto-fill, 300px)"
-        gridTemplateRows="repeat(auto-fill, 400px)"
+        gridTemplateColumns={
+          isNonTablet ? "repeat(auto-fill, 300px)" : "repeat(auto-fill, 250px)"
+        }
+        gridTemplateRows={
+          isNonTablet ? "repeat(auto-fill, 400px)" : "repeat(auto-fill, 305px)"
+        }
         justifyContent="space-around"
         rowGap="20px"
         columnGap="1.33%"
@@ -91,6 +91,6 @@ const ShoppingList =() => {
       </Box>
     </Box>
   );
-}
+};
 
 export default ShoppingList;

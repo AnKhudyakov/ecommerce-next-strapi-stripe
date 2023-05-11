@@ -1,11 +1,16 @@
 import { useTheme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import { shades } from "../../lib/theme";
+import Image from "next/image";
+import local from "../assets/local.svg";
+import phone from "../assets/phone.svg";
+import email from "../assets/email.svg";
 
 const Footer = () => {
   const {
     palette: { neutral },
   } = useTheme();
+
   return (
     <Box marginTop="70px" padding="40px 0" backgroundColor={neutral.light}>
       <Box
@@ -58,13 +63,22 @@ const Footer = () => {
           <Typography variant="h4" fontWeight="bold" mb="30px">
             Contact Us
           </Typography>
-          <Typography mb="30px">
-            622 Dixie Path, South Tobinchester, UT 98336
-          </Typography>
-          <Typography mb="30px" sx={{ wordWrap: "break-word" }}>
-            Email: test@gmail.com
-          </Typography>
-          <Typography mb="30px">(+1) 234 56 78</Typography>
+          <Box display="flex" alignItems="center" mb="30px" ml="5px">
+            <Image src={local} alt="local" />
+            <Typography ml="12px">
+              622 Dixie Path, South Tobinchester, UT 98336
+            </Typography>
+          </Box>
+          <Box display="flex" alignItems="center" mb="30px">
+            <Image src={email} alt="email" />
+            <Typography ml="10px" sx={{ wordWrap: "break-word" }}>
+              Email: test@gmail.com
+            </Typography>
+          </Box>
+          <Box display="flex" alignItems="center" mb="30px">
+            <Image src={phone} alt="phone" />
+            <Typography ml="12px">(+1) 234 56 78</Typography>
+          </Box>
         </Box>
       </Box>
     </Box>

@@ -63,14 +63,20 @@ const MainCarousel = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: slide.position,
-              height: isMobile?isNonMobile?isNonTablet?"100vh":"70vh":"50vh":"40vh",
+              height: isMobile
+                ? isNonMobile
+                  ? isNonTablet
+                    ? "100vh"
+                    : "70vh"
+                  : "50vh"
+                : "40vh",
               maxHeight: "1200px",
               backgroundAttachment: "fixed",
               position: "relative",
               background: "black",
               paddingTop: "60px",
             }}
-          > 
+          >
             <CardMedia
               sx={{
                 display: "block",
@@ -95,21 +101,26 @@ const MainCarousel = () => {
             margin={isNonMobile ? undefined : "0 auto"}
             maxWidth={isNonMobile ? undefined : "170px"}
           >
-            <Typography color={shades.secondary[200]} variant={isNonMobile? isNonTablet ? "h3" : "h4":"h5"}>
+            <Typography
+              color={shades.secondary[200]}
+              variant={isNonMobile ? (isNonTablet ? "h3" : "h4") : "h5"}
+            >
               -- NEW ITEMS
             </Typography>
 
-            <Typography variant={isNonMobile? isNonTablet ? "h1" : "h2":"h4"}>
+            <Typography
+              variant={isNonMobile ? (isNonTablet ? "h1" : "h2") : "h4"}
+            >
               Summer Sale
             </Typography>
             <Link href="#list">
-            <Typography
-              fontWeight="bold"
-              color={shades.secondary[300]}
-              sx={{ textDecoration: "underline" }}
-            >
-              Discover More
-            </Typography>
+              <Typography
+                fontWeight="bold"
+                color={shades.secondary[300]}
+                sx={{ textDecoration: "underline" }}
+              >
+                Discover More
+              </Typography>
             </Link>
           </Box>
         </Box>

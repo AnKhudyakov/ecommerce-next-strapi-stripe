@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Divider,
   IconButton,
   Typography,
   useMediaQuery,
@@ -9,7 +8,6 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import styled from "@emotion/styled";
-import { shades } from "../../lib/theme";
 import { setIsProfileOpen } from "../../state/profileSlice";
 import { useFetchUser } from "../../lib/authContext";
 import Login from "./Login";
@@ -26,10 +24,6 @@ const ProfileMenu = () => {
   const { user, loading } = useFetchUser();
   const dispatch = useDispatch();
   const isProfileOpen = useSelector((state) => state.profile.isProfileOpen);
-
-  const handleClick = () => {
-    dispatch(setIsProfileOpen({}));
-  };
 
   const handleSingOut = (e) => {
     e.preventDefault();

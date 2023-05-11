@@ -1,6 +1,6 @@
-import { IncomingForm } from 'formidable';
-import cloudinary from 'cloudinary';
-import { getTokenFromServerCookie } from '../../lib/auth';
+import { IncomingForm } from "formidable";
+import cloudinary from "cloudinary";
+import { getTokenFromServerCookie } from "../../lib/auth";
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -15,7 +15,7 @@ export const config = {
 };
 
 export default async function upload(req, res) {
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     const data = await new Promise((resolve, reject) => {
       const form = new IncomingForm();
 
@@ -35,9 +35,9 @@ export default async function upload(req, res) {
       const userResponse = await fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/users/${user_id}`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${jwt}`,
           },
           body: JSON.stringify({
@@ -46,11 +46,11 @@ export default async function upload(req, res) {
         }
       );
       const data = await userResponse.json();
-      return res.json({ message: 'success' });
+      return res.json({ message: "success" });
     } catch (error) {
       console.error(JSON.stringify(error));
     }
   } else {
-    return res.status(403).send('Forbidden');
+    return res.status(403).send("Forbidden");
   }
 }
